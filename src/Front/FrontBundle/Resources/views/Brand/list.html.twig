@@ -1,0 +1,22 @@
+{% if brands | length > 0 %}
+    <div class="container">
+        <div class="row mb20">
+            <div class="col-md-12">
+                <h2 class="text-center">Nos marques</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme owl-brand">
+                    {% for brand in brands %}
+                        <div class="item">
+                            {#<img src="{{ ipBblImageUrl(brand.file) | image([210,150], "inset") }}" alt="{{ brand.name }}">#}
+                            <img src="{{ ipBblImageUrl(brand.file) | imagine_filter('image_brand_bw') }}" alt="{{ brand.name }}" data-img="{{ ipBblImageUrl(brand.file) | imagine_filter('image_brand') }}" data-link="{{ path('front_site_brand_view', {'brand': brand.id, 'slug': brand.slug}) }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,94 @@
+{% extends '@FrontFront/Mail/layout.html.twig' %}
+
+{% block title %}
+    {% if title is not null %}
+        {{ title.name }}
+
+    {% endif %}
+{% endblock %}
+
+{% block sub_title %}
+    Bonjour, {{ user.civility }} {{ user.lastname }} {{ user.firstname }}
+{% endblock %}
+
+{% block body %}
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;background: #ffffff;">
+                <tr>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                            <tr>
+                                <td class="img-box3" style="vertical-align: top;">
+                                    <table class="para-table" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        {% if title is not null %}
+
+                                            <tr>
+                                                <td>
+                                                    Nous avons l'honneur de vous informer de l'ouverture du nouveau site huromfrance.com
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                        <tr>
+                                            <td height="10"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Nous nous permettons de vous rappeler vos identifiants de connexion :
+
+                                            </td>
+
+                                        </tr>
+
+                                        <tr></tr>
+                                        <tr></tr>
+                                        <tr style="margin-top: 2%">
+                                            <td align="left">
+                                                <p><b>Nom d'utilisateur</b> : {{ user.username }}</p>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td align="left">
+                                                <p><b>Mot de passe</b> : {{ password }}</p>
+
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+
+                                    <table class="para-table" width="100%" border="0" cellspacing="20" cellpadding="0">
+                                        <tr>
+                                            <div style="border-spacing: 5px;">
+                                                <td height="60" valign="middle" bgcolor="#f7941e" style="font-family:Arial, Helvetica, sans-serif; font-size:13px; border-spacing: 5px; color:#FFFFFF; mso-line-height-rule:exactly; line-height:16px; font-weight:bold; border:1px solid #f38929; border-radius:2px; -moz-border-radius:2px; -ms-border-radius:2px; -o-border-radius:2px; -webkit-border-radius:2px;">
+                                                    <a href="{{ absolute_url(path('front_fos_user_security_login' )) }}" target="_blank" style="color:#FFFFFF; text-decoration:underline; display:table-cell; text-align:center; height:60px; width:600px; vertical-align:middle;">Connectez vous</a>
+                                                </td>
+
+                                                <td width="20"></td>
+
+                                                <td height="60" valign="middle" bgcolor="#f7941e" style="font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#FFFFFF; mso-line-height-rule:exactly; line-height:16px; font-weight:bold; border:1px solid #f38929; border-radius:2px; -moz-border-radius:2px; -ms-border-radius:2px; -o-border-radius:2px; -webkit-border-radius:2px;">
+                                                    <a href="{{ absolute_url(path('fos_user_resetting_request' )) }}" target="_blank" style="color:#FFFFFF; text-decoration:underline; display:table-cell; text-align:center; height:60px; width:600px; vertical-align:middle;">Initialiser le mot de passe</a>
+                                                </td>
+                                            </div>
+
+
+                                        </tr>
+
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+
+{% endblock %}

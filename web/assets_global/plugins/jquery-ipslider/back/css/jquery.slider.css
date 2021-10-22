@@ -1,0 +1,254 @@
+#slider .btn-file {
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+#slider .btn-file > input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-size: 23px;
+    cursor: pointer;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    direction: ltr;
+}
+
+#slider .fileinput {
+    display: inline-block;
+    margin-bottom: 9px;
+}
+
+#slider .fileinput .btn {
+    vertical-align: middle;
+}
+
+#slider .fileinput-preview {
+    border: 1px solid #dddddd;
+    background-size: cover;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+#slider ul.layers {
+    list-style-type: none;
+    border: 1px solid #dddddd;
+    padding: 0;
+    margin: 0;
+}
+
+#slider ul.layers li span.id {
+    border-right: 1px solid #dddddd;
+    padding: 0 5px 0 5px;
+    vertical-align: top;
+}
+
+#slider ul.layers li span.title {
+    border-right: 1px solid #dddddd;
+    padding: 0 5px 0 5px;
+}
+
+#slider ul.layers li span.edit {
+    border-right: 1px solid #dddddd;
+    padding: 0 5px 0 0;
+}
+
+#slider .fileinput-preview div.layer {
+    position: absolute;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    bottom: auto;
+    right: auto;
+}
+
+#slider .fileinput-preview div.layer > .content {
+    position: relative;
+    line-height: 1em;
+    padding: 5px;
+}
+
+#slider .fileinput-preview div.bg {
+    background-color: rgba(11, 11, 11, 0.50);
+}
+
+#slider .fileinput-preview div.layer:active,
+#slider .fileinput-preview div.layer:hover {
+    border: 1px dashed #ffffff;
+    cursor: pointer;
+}
+
+#slider .mt-checkbox-inline, .mt-radio-inline {
+    padding: 0px;
+}
+
+#slider .fileinput-preview .grid {
+    /*width: 129.8px;
+    height: 84.6px;*/
+    display: inline-block;
+    float: left;
+    background: transparent;
+    border: 1px dotted #ffffff;
+}
+
+.minicolors-theme-bootstrap .minicolors-swatch {
+    width: 19px;
+    height: 19px;
+    border: 1px solid #a9a9a9;
+}
+
+#slider div.slide-config input.input-text {
+    width: 50px;
+}
+
+#slider .noborder {
+    border: 1px solid transparent;
+}
+
+#slider table.table-layers td.valign {
+    vertical-align: middle;
+}
+
+#slider table.table-layers .minicolors-theme-bootstrap .minicolors-swatch {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #a9a9a9;
+}
+
+#slider .ui-state-highlight,
+#slider .ui-widget-content
+#slider .ui-state-highlight,
+#slider .ui-widget-header
+#slider .ui-state-highlight {
+    border: 1px solid #dad55e;
+    background: #eef1f5;
+}
+
+#slider .ui-handle-td:hover {
+    cursor: pointer;
+}
+
+/* buttons */
+#slider div.fileinput-preview .btn:not(.btn-sm):not(.btn-lg) {
+    line-height: 1.44;
+}
+
+#slider div.fileinput-preview .btn {
+    outline: 0 !important;
+}
+
+#slider div.fileinput-preview .btn {
+    box-shadow: none !important;
+}
+
+#slider div.fileinput-preview .btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 0 !important;
+    background-image: none;
+}
+
+#slider div.fileinput-preview .btn:hover {
+    transition: all .3s;
+}
+
+#slider div.fileinput-preview .btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+#slider div.fileinput-preview .btn-primary.active,
+#slider div.fileinput-preview .btn-primary:active,
+#slider div.fileinput-preview .btn-primary:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+#slider div.fileinput-preview.btn-warning {
+    color: #fff;
+    background-color: #F1C40F;
+    border-color: #dab10d;
+}
+
+#slider div.fileinput-preview .btn-warning.active,
+#slider div.fileinput-preview .btn-warning:active,
+#slider div.fileinput-preview .btn-warning:hover {
+    color: #fff;
+    background-color: #c29d0b;
+    border-color: #a08209;
+}
+
+#slider div.fileinput-preview .btn-success {
+    color: #fff;
+    background-color: #36c6d3;
+    border-color: #2bb8c4;
+}
+
+#slider div.fileinput-preview.btn-success.active,
+#slider div.fileinput-preview .btn-success:active,
+#slider div.fileinput-preview .btn-success:hover {
+    color: #fff;
+    background-color: #27a4b0;
+    border-color: #208992;
+}
+
+#slider div.fileinput-preview .btn-danger {
+    color: #fff;
+    background-color: #ed6b75;
+    border-color: #ea5460;
+}
+
+#slider div.fileinput-preview .btn-danger.active,
+#slider div.fileinput-preview .btn-danger:active,
+#slider div.fileinput-preview .btn-danger:hover {
+    color: #fff;
+    background-color: #e73d4a;
+    border-color: #e31d2d;
+}
+
+#slider div.fileinput-preview .btn-info {
+    color: #fff;
+    background-color: #659be0;
+    border-color: #508edb;
+}
+
+#slider div.fileinput-preview .btn-info.active,
+#slider div.fileinput-preview.btn-info:active,
+#slider div.fileinput-preview .btn-info:hover {
+    color: #fff;
+    background-color: #3a80d7;
+    border-color: #286ec5;
+}
+
+#slider div.fileinput-preview .btn-cdbe {
+    color: #fff;
+    background-color: transparent;
+    border-color: #a9c500;
+    font-weight: bold;
+}
+
+#slider div.fileinput-preview .btn-cdbe.active,
+#slider div.fileinput-preview .btn-cdbe:active,
+#slider div.fileinput-preview .btn-cdbe:hover {
+    color: #fff;
+    background-color: #a9c500;
+    border-color: transparent;
+}

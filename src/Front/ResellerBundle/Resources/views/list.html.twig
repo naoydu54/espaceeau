@@ -1,0 +1,28 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    {% for department in departmentsValid %}
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading{{ department.id }}">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ department.id }}" aria-expanded="true" aria-controls="collapse{{ department.id }}">
+                        <small>({{ department.code }}) {{ department.name }}</small>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse{{ department.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ department.id }}">
+                <div class="panel-body">
+                    <ul>
+                        {% for  reseller in department.resellers %}
+                            <li id="listRevendeur">
+                                <strong>{{ reseller.nameReseller }}</strong> <small>({{ reseller.adress }})</small>
+                            </li>
+                            <hr>
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+

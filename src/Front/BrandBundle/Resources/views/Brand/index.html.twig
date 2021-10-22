@@ -1,0 +1,42 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(menu.menuTranslations).name }}{% endblock %}
+{% block meta_description %}{{ translate(menu.menuTranslations).metaDesc }}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(menu.menuTranslations).name }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{{ translate(menu.menuTranslations).metaDesc }}{% endblock %}
+
+{% block body %}
+    <div class="container mt50">
+        <div class="row mt20">
+            <h1>{{ translate(menu.menuTranslations).name }}</h1>
+
+
+
+            {% if brands | length > 0 %}
+                {% for brand in brands %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                {% if brand.document %}
+                                    <img src="{{ brand.document.webPath | image([200,200], 'inset') }}" alt="{{ brand.document.name }}" class="img-responsive">
+                                {% else %}
+                                    <img src="{{ '/assets_front/img/no-image.jpg' | image([200,200]) }}" alt="Aucune image">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <h2>{{ brand.name }}</h2>
+                                <p>{{ brand.description | raw }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucune marques pour le moment</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock body %}

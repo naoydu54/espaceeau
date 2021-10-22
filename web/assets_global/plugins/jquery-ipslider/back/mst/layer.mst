@@ -1,0 +1,100 @@
+<tr data-id="{{id}}" data-type="{{type}}">
+    <td class="text-center valign ui-handle-td">
+        <i class="fa fa-arrows"></i>
+    </td>
+    <td>
+        <input type="hidden" id="val_layer_id" name="val_layer_id" value="{{id}}">
+        <div class="form-group">
+            <label for="val_layer_value">Texte</label>
+            <input class="form-control" type="text" id="val_layer_value" name="val_layer_value" value="{{value}}">
+        </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <label for="val_layer_x"><i class="fa fa-chevron-left"></i> X <i class="fa fa-chevron-right"></i></label>
+            <div class="input-group">
+                <input type="text" id="val_layer_x" name="val_layer_x" value="{{posX}}" disabled="disabled" class="form-control">
+                <span class="input-group-addon">
+                    %
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="val_layer_y"><i class="fa fa-chevron-up"></i> Y <i class="fa fa-chevron-down"></i></label>
+            <div class="input-group">
+                <input type="text" id="val_layer_y" name="val_layer_y" value="{{posY}}" disabled="disabled" class="form-control">
+                <span class="input-group-addon">
+                %
+                </span>
+            </div>
+        </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <label for="val_layer_color">Couleur</label>
+            <input type="text" id="val_layer_color" name="val_layer_color" class="form-control jquery-minicolor" data-control="hue" value="{{color}}">
+        </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <label for="val_layer_font">Police</label>
+            <select class="form-control" id="val_layer_font" name="val_layer_font">
+                {{#font}}
+                    <option value="{{idLayerFont}}" data-value="{{valueLayerFont}}" {{#selectedLayerFont}}selected="selected"{{/selectedLayerFont}}>{{nameLayerFont}}</option>
+                {{/font}}
+            </select>
+        </div>
+        <div class="mt-checkbox-inline text-center">
+            {{#bold}}
+                <label class="mt-checkbox">
+                    <input type="checkbox" id="val_layer_bold" name="val_layer_bold" value="bold" checked="checked"> Gras
+                    <span></span>
+                </label>
+            {{/bold}}
+            {{^bold}}
+                <label class="mt-checkbox">
+                    <input type="checkbox" id="val_layer_bold" name="val_layer_bold" value="bold"> Gras
+                    <span></span>
+                </label>
+            {{/bold}}
+
+            {{#background}}
+                <label class="mt-checkbox">
+                    <input type="checkbox" id="val_layer_background" name="val_layer_background" value="bold" checked="checked"> Fond
+                    <span></span>
+                </label>
+            {{/background}}
+            {{^background}}
+                <label class="mt-checkbox">
+                    <input type="checkbox" id="val_layer_background" name="val_layer_background" value="bold"> Fond
+                    <span></span>
+                </label>
+            {{/background}}
+        </div>
+
+        <div class="form-group">
+            <label for="val_layer_font_size">Taille</label>
+            <div class="input-group">
+                <input type="text" id="val_layer_font_size" name="val_layer_font_size" value="{{fontSize}}" class="form-control">
+                <span class="input-group-addon">
+                    px
+                </span>
+            </div>
+        </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <label for="val_layer_animation">Animation</label>
+            <select class="form-control" id="val_layer_animation" name="val_layer_animation">
+                {{#animation}}
+                    <option value="{{idLayerAnimation}}" {{#selectedLayerAnimation}}selected="selected"{{/selectedLayerAnimation}}>{{valueLayerAnimation}}</option>
+                {{/animation}}
+            </select>
+        </div>
+    </td>
+    <td class="text-center valign">
+        {{!<a href="javascript:;" class="btn btn-xs btn-default btn-edit-layer" disabled="disabled"><i class="fa fa-pencil"></i></a>}}
+        <a href="javascript:;" class="btn btn-sm btn-danger btn-delete-layer"><i class="fa fa-times"></i></a>
+    </td>
+</tr>

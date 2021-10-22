@@ -1,0 +1,12 @@
+{% extends 'FrontContactBundle::layout.html.twig' %}
+
+{% block contact_form %}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }}">{{ message }}</div>
+        {% endfor %}
+    {% endfor %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock contact_form %}

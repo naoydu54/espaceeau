@@ -1,0 +1,26 @@
+{% if actualitys |length > 0 %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Actualités</h2>
+
+                <div class="owl-carousel owl-theme owl-actuality">
+                    {% for actuality in actualitys %}
+                        <div class="item">
+                            {% if actuality.file %}
+                                <img src="{{ ipBblImageUrl(actuality.file) | image([400,270]) }}" alt="{{ actuality.file.name }}">
+                            {% else %}
+                                <img src="{{ '/assets_global/img/no-image.jpg' | image([400,270]) }}" alt="Aucune image">
+                            {% endif %}
+
+                            <p>{{ actuality.dateAdd | date('d/m/Y') }}</p>
+                            <h4>{{ translate(actuality.actualityTranslations).name }}</h4>
+                            <p>{{ translate(actuality.actualityTranslations).metaDesc }}</p>
+                            <div><a href="{{ path('front_site_actuality_view', {'actuality': actuality.id, 'slug': translate(actuality.actualityTranslations).slug}) }}">Voir plus</a></div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

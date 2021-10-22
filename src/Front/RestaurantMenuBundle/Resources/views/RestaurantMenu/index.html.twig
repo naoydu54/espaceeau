@@ -1,0 +1,68 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(menu.menuTranslations).name }}{% endblock %}
+{% block meta_description %}{{ translate(menu.menuTranslations).metaDesc }}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(menu.menuTranslations).name }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{{ translate(menu.menuTranslations).metaDesc }}{% endblock %}
+
+{% block stylesheets %}
+    {% if app.debug %}
+        <link href="{{ asset('assets_front/plugins/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets_front/plugins/owlcarousel/assets/owl.theme.default.min.css') }}" rel="stylesheet">
+    {% else %}
+        {% stylesheets filter='cssrewrite'
+        'assets_front/plugins/owlcarousel/assets/owl.carousel.min.css'
+        'assets_front/plugins/owlcarousel/assets/owl.theme.default.min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt50">
+        <div class="row mt20">
+            <h1>{{ translate(menu.menuTranslations).name }}</h1>
+
+            {#{% if translate(page.pageTranslations).template is not empty %}
+                <div class="row">
+                    <div class="col-md-12 description">
+                        {{ include(template_from_string(translate(page.pageTranslations).template)) }}
+                    </div>
+                </div>
+            {% endif %}#}
+
+            {% if documents | length > 0 %}
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="owl-carousel-loader">
+                        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                    </div>
+                    <div class="owl-carousel owl-theme">
+                        {% for document in documents %}
+                            <div class="item">
+                                <img src="{{ document.webPath | image([595,842], "inset") }}" alt="{{ document.name }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {% if app.debug %}
+        <script type="text/javascript" src="{{ asset('assets_front/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontrestaurantmenu/js/restaurantMenu.js') }}"></script>
+    {% else %}
+        {% javascripts
+        'assets_front/plugins/owlcarousel/owl.carousel.min.js'
+        '@FrontRestaurantMenuBundle/Resources/public/js/restaurantMenu.js' %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends '@FrontFront/Mail/layout.html.twig' %}
+
+{% block title %}
+    Réinitialisation de votre mot de passe {{ getSettingByName('COMPANY_NAME') }}
+{% endblock %}
+
+{% block sub_title %}
+    Bonjour, {{ user.civility }} {{ user.firstname }} {{ user.lastname }}
+{% endblock %}
+
+{% block body %}
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;background: #ffffff;">
+                <tr>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                            <tr>
+                                <td class="img-box3" style="vertical-align: top;">
+                                    <table class="para-table" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:10px;">
+                                                Pour réinitialiser votre mot de passe, merci de  <a class="btn btn-primary" href="{{ confirmationUrl }}">cliquer sur ce bouton</a>
+                                                <br> <br>
+                                                Si le bouton ne fonctionne pas, merci de copier l'url suivante dans votre navigateur : <br>
+                                                {{ confirmationUrl }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Cordialement,
+                                                <br>
+                                                L'équipe {{ getSettingByName('COMPANY_NAME') }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+{% endblock %}

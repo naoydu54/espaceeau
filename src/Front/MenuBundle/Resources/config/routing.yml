@@ -1,0 +1,6 @@
+front_site_menu_index:
+    path:     /{menu}/{slug}/{page}
+    defaults: { _controller: FrontMenuBundle:Menu:index, page: null }
+    requirements:
+        menu: \d+
+        page: \d+

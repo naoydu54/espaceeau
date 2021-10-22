@@ -1,0 +1,10 @@
+user.lastname.notblank: Ce champ ne peut être vide
+user.firstname.notblank: Ce champ ne peut être vide
+user.homephone.integer: Ce champ doit être un nombre
+user.cellephone.integer: Ce champ doit être un nombre
+#user.cellehomephone.required: Un numéro de téléphone fixe ou portable doit être renseigné
+address.postalcode.integer: Ce champ doit être un nombre
+address.postalcode.min: Le code postal doit être compté de 5 caractères
+address.postalcode.max: Le code postal doit être compté de 5 caractères
+address.addresse.notblank: Ce champ ne peut être vide
+address.city.notblank: Ce champ ne peut être vide

@@ -1,0 +1,44 @@
+{% if pagination is not empty %}
+
+    {#<div class="{{ (pageEntity.slider is not null) ? 'mt20' : 'mt50' }}">#}
+        {% for page in pagination.pages %}
+
+
+
+            <div class="container">
+                {#{{ dump(page.showName) }}#}
+                {% if page.showName %}
+                    {#{{ dump('a') }}#}
+                    <h1>{{ translate(page.pageTranslations).name }}</h1>
+                {% else %}
+                    {#{% if  menu.menuTranslations is defined %}#}
+                        {#<h1>{{ translate(menu.menuTranslations).name }}</h1>#}
+
+                    {#{% endif %}#}
+                {% endif %}
+            </div>
+
+            {{ include(template_from_string(translate(page.pageTranslations).template)) }}
+        {% endfor %}
+
+        {% if pagination.pages | length > pagination.nbPerPages %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="pagination">
+                            {% for p in range(1, pagination.nbPages) %}
+                                <li {% if p == pagination.page %}class="active"{% endif %}>
+                                    {% if app.request.get('menu') is defined and app.request.get('menu') is not null %}
+                                        <a href="{{ path(app.request.attributes.get('_route'), {'menu': app.request.get('menu').id, 'slug': translate(app.request.get('menu').menuTranslations).slug, 'page': p}) }}">{{ p }}</a>
+                                    {% else %}
+                                        <a href="{{ path(app.request.attributes.get('_route'), {'page': p}) }}">{{ p }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {#</div>#}
+{% endif %}

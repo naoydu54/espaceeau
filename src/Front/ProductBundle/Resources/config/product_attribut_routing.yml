@@ -1,0 +1,5 @@
+front_site_product_attribut_list_ajax:
+    path:     /list-ajax/{product}
+    defaults: { _controller: FrontProductBundle:ProductAttribut:listAjax }
+    requirements:
+        product: \d+

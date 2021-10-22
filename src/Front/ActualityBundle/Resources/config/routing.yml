@@ -1,0 +1,9 @@
+front_site_actuality_index:
+    path:     /
+    defaults: { _controller: FrontActualityBundle:Actuality:index }
+
+front_site_actuality_view:
+    path:     /{actuality}/{slug}
+    defaults: { _controller: FrontActualityBundle:Actuality:view }
+    requirements:
+        actuality: \d+

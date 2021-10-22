@@ -1,0 +1,561 @@
+{
+    "section": {
+        "groups": [
+            {
+                "id": "texte",
+                "nom": "Texte",
+                "class": "active",
+                "panel": "in",
+                "elements": [
+                    {
+                        "id": "custom-text",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "Texte une colonne",
+                        "icon": "icons/vignette50.png",
+                        "template": "texte/custom-text.mst",
+                        "variables": {
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "1C-T-12",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "Titre unique",
+                        "icon": "icons/vignette27.png",
+                        "template": "texte/1C-T-12.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]"
+                        }
+                    },
+                    {
+                        "id": "1C-text-12",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "Texte une colonne",
+                        "icon": "icons/vignette49.png",
+                        "template": "texte/1C-text-12.mst",
+                        "variables": {
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "2C-T-6-6",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "Texte en 2 colonnes égales avec 1 titre en gras pour chaques colonnes",
+                        "icon": "icons/vignette31.png",
+                        "template": "texte/2C-T-6-6.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "2C-T-3-9",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "Texte en 2 colonnes a gauche plus petite qu'à droite",
+                        "icon": "icons/vignette42.png",
+                        "template": "texte/2C-T-3-9.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "2C-T-4-4-4",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "Texte en 3 colonnes égales avec 1 titre en gras pour chaques colonnes",
+                        "icon": "icons/vignette32.png",
+                        "template": "texte/2C-T-4-4-4.mst",
+                        "variables": {
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "4C-text",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "4 Colonnes avec pour chaque 1 text",
+                        "icon": "icons/vignette35.png",
+                        "template": "texte/4C-text.mst",
+                        "variables": {
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "1C-T-t-12",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "1 Colonne avec un titre et le texte associé",
+                        "icon": "icons/vignette21.png",
+                        "template": "texte/1C-T-t-12.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "3C-T-6-3-3",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "Texte en 3 colonnes a 6 col à gauche et 2*3 col à droite",
+                        "icon": "icons/vignette33.png",
+                        "template": "texte/3C-T-6-3-3.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "2C-T-t-12",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "2 Colonnes avec pour chaque 1 titre en gras un texte",
+                        "icon": "icons/vignette18.png",
+                        "template": "texte/2C-T-t-12.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "3C-T-t-12",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "3 Colonnes avec pour chaque 1 titre en gras un texte",
+                        "icon": "icons/vignette43.png",
+                        "template": "texte/3C-T-t-12.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "4C-T-t-12",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "4 Colonnes avec pour chaque 1 titre en gras un texte",
+                        "icon": "icons/vignette19.png",
+                        "template": "texte/4C-T-t-12.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "4C-T",
+                        "type": "texte",
+                        "categorie": "texte",
+                        "name": "4 Colonnes avec pour chaque 1 titre",
+                        "icon": "icons/vignette34.png",
+                        "template": "texte/4C-T.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "image",
+                "nom": "Image",
+                "class": "",
+                "panel": "",
+                "elements": [
+                    {
+                        "id": "1I-12",
+                        "type": "image",
+                        "name": "Une image centrée",
+                        "icon": "icons/vignette15.png",
+                        "template": "image/1I-12.mst",
+                        "variables": {}
+                    },
+                    {
+                        "id": "3I-4-4-4",
+                        "type": "image",
+                        "name": "3 Images sur une même ligne",
+                        "icon": "icons/vignette10.png",
+                        "template": "image/3I-4-4-4.mst",
+                        "variables": {}
+                    },
+                    {
+                        "id": "2I-8-4",
+                        "type": "image",
+                        "name": "3 Images sur une même ligne",
+                        "icon": "icons/vignette44.png",
+                        "template": "image/2I-8-4.mst",
+                        "variables": {}
+                    },
+                    {
+                        "id": "I-p",
+                        "type": "image",
+                        "name": "Une image en fond avec de la parallax",
+                        "icon": "icons/vignette26.png",
+                        "template": "image/I-p.mst",
+                        "variables": {}
+                    }
+                ]
+            },
+            {
+                "id": "text-image",
+                "nom": "Texte et Image",
+                "class": "",
+                "panel": "",
+                "elements": [
+                    {
+                        "id": "IG-2C-T-6-6",
+                        "type": "texte-image",
+                        "name": "Image à gauche + texte en 2 colonnes avec 1 titre en gras pour les 2 colonnes",
+                        "icon": "icons/vignette4.png",
+                        "template": "texteimage/IG-2C-T-6-6.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "IG-1C-T-12",
+                        "type": "texte-image",
+                        "name": "Image avec un texte et son titre",
+                        "icon": "icons/vignette2.png",
+                        "template": "texteimage/IG-1C-T-12.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "IG-1C-T-2",
+                        "type": "texte-image",
+                        "name": "2 Colonnes avec pour chaque 1 titre en gras un texte et une photo placée en dessous",
+                        "icon": "icons/vignette20.png",
+                        "template": "texteimage/IG-1C-T-2.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "IG-1C-T-3",
+                        "type": "texte-image",
+                        "name": "3 Colonnes avec pour chaque 1 titre en gras un texte et une photo placée en dessous",
+                        "icon": "icons/vignette45.png",
+                        "template": "texteimage/IG-1C-T-3.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "1I-4-T-12",
+                        "type": "texte-image",
+                        "name": "2 Colonnes avec pour chaque 1 titre en gras un texte et une photo placée au dessus",
+                        "icon": "icons/vignette46.png",
+                        "template": "texteimage/1I-4-T-12.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "IH-1C-T-2",
+                        "type": "texte-image",
+                        "name": "2 Colonnes avec pour chaque 1 titre en gras un texte et une photo placée au dessus",
+                        "icon": "icons/vignette16.png",
+                        "template": "texteimage/IH-1C-T-2.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "IH-1C-T-3",
+                        "type": "texte-image",
+                        "name": "3 Colonnes avec pour chaque 1 titre en gras un texte et une photo placée au dessus",
+                        "icon": "icons/vignette5.png",
+                        "template": "texteimage/IH-1C-T-3.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "IH-1C-T-4",
+                        "type": "texte-image",
+                        "name": "4 Colonnes avec pour chaque 1 titre en gras un texte et une photo placée au dessus",
+                        "icon": "icons/vignette17.png",
+                        "template": "texteimage/IH-1C-T-4.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "IT-T-2",
+                        "type": "texte-image",
+                        "name": "2 Image avec texte par dessus et texte en dessous",
+                        "icon": "icons/vignette23.png",
+                        "template": "texteimage/IT-T-2.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "IT-T-3",
+                        "type": "texte-image",
+                        "name": "3 Image avec texte par dessus et texte en dessous",
+                        "icon": "icons/vignette22.png",
+                        "template": "texteimage/IT-T-3.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "IT-T-4",
+                        "type": "texte-image",
+                        "name": "4 Image avec texte par dessus et texte en dessous",
+                        "icon": "icons/vignette24.png",
+                        "template": "texteimage/IT-T-4.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "6-IG-9-T-t-3",
+                        "type": "texte-image",
+                        "name": "6 images avec un titre et un texte à droite",
+                        "icon": "icons/vignette36.png",
+                        "template": "texteimage/6-IG-9-T-t-3.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "ITt-3",
+                        "type": "texte-image",
+                        "name": "6 images avec un titre et un texte à droite",
+                        "icon": "icons/vignette38.png",
+                        "template": "texteimage/ITt-3.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "ITt-nobg-3",
+                        "type": "texte-image",
+                        "name": "6 images avec un titre et un texte à droite",
+                        "icon": "icons/vignette38.png",
+                        "template": "texteimage/ITt-nobg-3.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    },
+                    {
+                        "id": "4C-T-t",
+                        "type": "texte-image",
+                        "name": "4 Colonnes avec pour chaque 1 titre en gras un texte et une photo placée au dessus",
+                        "icon": "icons/vignette17.png",
+                        "template": "texteimage/4C-T-t.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]",
+                            "texte": "[Insérer du texte]"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "video",
+                "nom": "Vidéos",
+                "class": "",
+                "panel": "",
+                "elements": [
+                    {
+                        "id": "V-1C",
+                        "type": "video",
+                        "name": "Une vidéo centrée",
+                        "icon": "icons/vignette9.png",
+                        "template": "video/V-1C.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]"
+                        }
+                    },
+                    {
+                        "id": "V-2C",
+                        "type": "video",
+                        "name": "2 vidéos centrées",
+                        "icon": "icons/vignette47.png",
+                        "template": "video/V-2C.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]"
+                        }
+                    },
+                    {
+                        "id": "V-3C",
+                        "type": "video",
+                        "name": "3 vidéos centrées",
+                        "icon": "icons/vignette48.png",
+                        "template": "video/V-3C.mst",
+                        "variables": {
+                            "titre": "[Insérer un titre]"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "text-video",
+                "nom": "Texte et Vidéos",
+                "class": "",
+                "panel": "",
+                "elements": [
+                    {
+                        "id": "VT-V-T",
+                        "type": "text-video",
+                        "name": "Vidéo à gauche texte à droite",
+                        "icon": "icons/vignette28.png",
+                        "template": "textvideo/VT-V-T.mst",
+                        "variables": {
+                            "text": "[Insérer un texte]"
+                        }
+                    },
+                    {
+                        "id": "VT-T-V",
+                        "type": "text-video",
+                        "name": "Texte à droite vidéo à gauche",
+                        "icon": "icons/vignette29.png",
+                        "template": "textvideo/VT-T-V.mst",
+                        "variables": {
+                            "text": "[Insérer un texte]"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "icons",
+                "nom": "Icones",
+                "class": "",
+                "panel": "",
+                "elements": [
+                    {
+                        "id": "3C-IT.mst",
+                        "type": "icons",
+                        "name": "3 Colonnes (titre + texte) avec une icone par colonne",
+                        "icon": "icons/vignette37.png",
+                        "template": "icon/3C-IT.mst",
+                        "variables": {
+                            "title": "[Insérer un titre]",
+                            "text": "[Insérer un texte]"
+                        }
+                    },
+                    {
+                        "id": "3C-I-t",
+                        "type": "icons",
+                        "name": "3 Colonnes (texte) avec une icone par colonne",
+                        "icon": "icons/vignette41.png",
+                        "template": "icon/3C-I-t.mst",
+                        "variables": {
+                            "title": "[Insérer un titre]",
+                            "text": "[Insérer un texte]"
+                        }
+                    },
+                    {
+                        "id": "I-2C-IT",
+                        "type": "icons",
+                        "name": "3 Colonnes avec une icone par colonne",
+                        "icon": "icons/vignette40.png",
+                        "template": "icon/I-2C-IT.mst",
+                        "variables": {
+                            "title": "[Insérer un titre]",
+                            "text": "[Insérer un texte]"
+                        }
+                    },
+                    {
+                        "id": "4C-I-tT",
+                        "type": "icons",
+                        "name": "4 Colonnes (texte) avec une icone par colonne",
+                        "icon": "icons/vignette58.png",
+                        "template": "icon/4C-I-tT.mst",
+                        "variables": {
+                            "title": "[Insérer un titre]",
+                            "text": "[Insérer un texte]"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "divers",
+                "nom": "Divers",
+                "class": "",
+                "panel": "",
+                "elements": [
+                    {
+                        "id": "1E",
+                        "type": "separator",
+                        "name": "Un espace",
+                        "icon": "icons/vignette26.png",
+                        "template": "divers/1E.mst",
+                        "variables": {}
+                    },
+                    {
+                        "id": "HR",
+                        "type": "separator",
+                        "name": "Une barre",
+                        "icon": "icons/vignette54.png",
+                        "template": "divers/hr.mst",
+                        "variables": {}
+                    },
+                    {
+                        "id": "DL",
+                        "type": "button",
+                        "name": "Télécharger un fichier",
+                        "icon": "icons/vignette52.png",
+                        "template": "divers/button.mst",
+                        "variables": {
+                            "texte": "Télécharger le fichier"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "modules",
+                "nom": "Modules",
+                "class": "",
+                "panel": "",
+                "elements": [
+                    {
+                        "id": "ACTUALITY",
+                        "type": "module",
+                        "name": "Actualité",
+                        "icon": "icons/vignette55.png",
+                        "template": "divers/module_actuality.mst",
+                        "variables": {}
+                    },
+                    {
+                        "id": "HTML",
+                        "type": "module",
+                        "name": "HTML",
+                        "icon": "icons/vignette56.png",
+                        "template": "divers/module_html.mst",
+                        "variables": {}
+                    },
+                    {
+                        "id": "BRAND",
+                        "type": "module",
+                        "name": "Marque",
+                        "icon": "icons/vignette57.png",
+                        "template": "divers/module_brand.mst",
+                        "variables": {}
+                    }
+                ]
+            }
+        ]
+    }
+}

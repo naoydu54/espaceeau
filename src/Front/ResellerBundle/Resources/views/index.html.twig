@@ -1,0 +1,69 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} {% endblock %}
+{% block meta_description %} Catalogue ineractif{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} {% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{% endblock %}
+
+{% block header  %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container mt50">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>PAGE EN CONSTRUCTION</h1> <br>
+                Si vous avez besoin de connaître les magasins revendeurs de votre région, en attendant, veuillez contacter notre service commercial au 03 29 82 27 71. <br>
+                Veuillez nous excuser pour la gêne occasionnée.
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                {% include '@FrontReseller/map.html.twig' %}
+
+            </div>
+
+            <div class="col-md-3">
+                {{ render(controller('FrontResellerBundle:Reseller:listReseller')) }}
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+{% endblock body %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block javascripts %}
+    {% if app.debug %}
+        <script src="{{ asset('assets_front/plugins/map-reseller/jquery.vmap.js') }}"></script>
+        <script src="{{ asset('assets_front/plugins/map-reseller/jquery.vmap.france.js') }}"></script>
+        <script src="{{ asset('assets_front/plugins/map-reseller/jquery.mapael.js') }}"></script>
+
+        <script src="{{ asset('bundles/frontreseller/js/map-reseller.js') }}"></script>
+    {% else %}
+        {% javascripts
+            'assets_front/plugins/map-reseller/jquery.vmap.js'
+            'assets_front/plugins/map-reseller/jquery.vmap.france.js'
+            'assets_front/plugins/map-reseller/jquery.mapael.js'
+            '@FrontResellerBundle/Resources/public/js/map-reseller.js' %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}

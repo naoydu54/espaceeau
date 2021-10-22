@@ -1,0 +1,26 @@
+front_site_product_index:
+    path:     /
+    defaults: { _controller: FrontProductBundle:Product:index }
+
+front_site_product_view:
+    path:     /{product}/{slug}
+    defaults: { _controller: FrontProductBundle:Product:view }
+    requirements:
+        id: \d+
+
+front_site_product_filter_get:
+    path:     /filtre-get
+    defaults: { _controller: FrontProductBundle:Product:getFilter }
+
+front_site_product_filter_send:
+    path:     /filtre-send
+    defaults: { _controller: FrontProductBundle:Product:sendFilter }
+
+
+front_site_product_prevent_available:
+    path:     /prevent/available/{product}
+    defaults: { _controller: FrontProductBundle:Product:preventProductAvailbale }
+
+front_site_product_available_prevent_available:
+    path:     /prevent/available-attribut/{product}/{attribut}
+    defaults: { _controller: FrontProductBundle:Product:preventProductAttributAvailbale }

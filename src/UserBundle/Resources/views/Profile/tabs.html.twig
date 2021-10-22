@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs mb20">
+    <li role="presentation" class="{% if tab == 'myaccount' %}active{% endif %}">
+        <a href="{{ path('fos_user_profile_show') }}">Mes coordonnées</a>
+    </li>
+    <li role="presentation" class="{% if tab == 'myaddress' %}active{% endif %}">
+        <a href="{{ path('front_user_address_index') }}">Mes adresses</a>
+    </li>
+    <li role="presentation" class="{% if tab == 'mypassword' %}active{% endif %}">
+        <a href="{{ path('fos_user_change_password') }}">Modifier mon mot de passe</a>
+    </li>
+    <li role="presentation" class="{% if tab == 'myorders' %}active{% endif %}">
+        <a href="{{ path('front_user_order_index') }}">Mes commandes</a>
+    </li>
+</ul>

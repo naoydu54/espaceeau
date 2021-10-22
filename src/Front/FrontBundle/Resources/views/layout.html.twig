@@ -1,0 +1,91 @@
+{% extends '::front.html.twig' %}
+
+{% block title %}{{ getSeo(pageEntity.menu, app.request.attributes).title }}{% endblock %}
+{% block meta_description %}{{ getSeo(pageEntity.menu, app.request.attributes).description }}{% endblock %}
+
+{% block ogtitle %}{{ getSeo(pageEntity.menu, app.request.attributes).title }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{{ getSeo(pageEntity.menu, app.request.attributes).description }}{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block header %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('front_front_home_index') }}">
+                <img src="{{ 'assets_global/img/logo.png' | image([150,80], 'inset') }}" alt="{{ getSettingByName('COMPANY_NAME') }}" class="img-responsive">
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                {{ render(controller('FrontMenuBundle:Menu:menu', {attributes: app.request.attributes, type: 'header'})) }}
+
+
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div class="messages-container"></div>
+{% endblock %}
+
+{% block body %}
+    {% include "FrontFrontBundle:Slider:view.html.twig" with {'slider': slider} %}
+
+    {% include "FrontFrontBundle:Page:view.html.twig" with {'pagination': pagination, 'attributes': app.request.attributes} %}
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <div class="container-fluid top mt40 mb40">
+            <div class="container">
+
+                {{ render(controller('FrontFrontBundle:Front:footer')) }}
+            </div>
+        </div>
+        <div class="container-fluid bottom">
+            <div class="container">
+                <div class="row mt20">
+                    <div class="col-md-6">
+                        Copyright &copy; {{ "now"|date('Y') }} <a href="{{ ip_site }}" title="{{ ip_name }}" target="_blank">{{ ip_name }}</a>
+                    </div>
+                    {% if getSocialNetworks()|length > 0 %}
+                        <div class="col-md-6">
+                            <ul class="inline social-icon pull-right">
+                                {% for socialNetwork in getSocialNetworks() %}
+                                    <a href="{{ socialNetwork.url ~ socialNetwork.parameter }}" title="" target="_blank">
+                                        <li>{{ socialNetwork.icon|raw }}</li>
+                                    </a>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+    {% if app.debug %}
+        <script type="text/javascript" src="{{ asset('bundles/frontfront/js/custom/home.js') }}"></script>
+
+    {% else %}
+        {% javascripts
+            '@FrontFrontBundle/Resources/public/js/custom/home.js' %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}
+
+
+{% endblock %}

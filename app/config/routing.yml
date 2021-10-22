@@ -1,0 +1,23 @@
+admin:
+    resource: "routing_admin.yml"
+    prefix:   /admin
+    options:
+        expose: true
+
+front:
+    resource: "routing_front.yml"
+    prefix:   /
+    options:
+        expose: true
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+ip_bibliotheque_bundle:
+    resource: "@IpBibliothequeBundle/Resources/config/routing.yml"
+
+ip_page_bundle:
+    resource: "@IpPageBundle/Resources/config/routing.yml"

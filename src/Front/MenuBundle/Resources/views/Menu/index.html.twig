@@ -1,0 +1,146 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSeo(menu, app.request.attributes).title }}{% endblock %}
+{% block meta_description %}{{ getSeo(menu, app.request.attributes).description }}{% endblock %}
+
+{% block ogtitle %}{{ getSeo(menu, app.request.attributes).title }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{{ getSeo(menu, app.request.attributes).description }}{% endblock %}
+
+{% block stylesheets %}
+    {% if app.debug %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets_global/plugins/jquery-ipcheckbox/css/jquery.ipcheckbox.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets_back/global/plugins/ion.rangeslider/css/ion.rangeSlider.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets_back/global/plugins/ion.rangeslider/css/ion.rangeSlider.skinFlat.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets_back/global/plugins/select2/css/select2.min.css') }}">
+    {% else %}
+        {% stylesheets filter='cssrewrite'
+            'assets_global/plugins/jquery-ipcheckbox/css/jquery.ipcheckbox.css'
+            'assets_back/global/plugins/ion.rangeslider/css/ion.rangeSlider.css'
+            'assets_back/global/plugins/ion.rangeslider/css/ion.rangeSlider.skinFlat.css'
+            'assets_back/global/plugins/select2/css/select2.min.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {#{% include "FrontFrontBundle:Slider:view.html.twig" with {'slider': menu.pages.slider} %}#}
+
+
+
+    {% include "FrontFrontBundle:Slider:view.html.twig" with {'slider': menu.slider} %}
+    <div class="container mt50">
+        <div class="row">
+            <div class="col-md-12">
+                {#<h1>{{ translate(menu.menuTranslations).name }}</h1>#}
+            </div>
+        </div>
+    </div>
+    {% include "FrontFrontBundle:Page:view.html.twig" with {'pagination': pagination, 'attributes': app.request.attributes, 'pageEntity': pageEntity} %}
+
+
+    <div class="container mt50" id="product-container">
+        {% if menu.validProducts | length %}
+            <div class="row mb20">
+                <button class="btn btn-primary btn-more-criteria" data-toggle="collapse" data-target="#filtre-collapse" disabled="disabled"><i class="fa fa-search"></i> Plus de critères</button>
+                <div id="filtre-collapse" class="collapse">
+                    <hr>
+                    <div id="filter-container" data-id="{{ menu.id }}"></div>
+                    <hr>
+                </div>
+            </div>
+
+
+            {% for products in menu.validProducts | batch(4) %}
+                <div class="row">
+
+                    {% for p in products %}
+                        <div class="col-md-3">
+
+                            <div class="test">
+                                {% include "FrontProductBundle:Product:oneProductShop.html.twig" with {'product': p} %}
+
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+
+
+        {% endif %}
+
+
+    </div>
+
+
+    {% if menu.pages |first == false %}
+        {% if menuChildrens | length > 0 %}
+
+            {% for menu in menuChildrens %}
+                <div class="container-fluid mt50 sub-menu">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="mb20">
+                                    <a href="{{ path(menu.route, {'menu': menu.id, 'slug': translate(menu.menuTranslations).slug }) }}" title="{{ translate(menu.menuTranslations).name }}">
+                                        {{ translate(menu.menuTranslations).name }}
+
+                                        <small>Voir plus</small>
+                                        <hr>
+                                    </a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container mt50">
+                {% if menu.getLastProducts | length > 0 %}
+                    <div class="row">
+                        <div class="owl-carousel owl-carouselSubItem owl-theme owl-nome ">
+                            {% for product in menu.getLastProducts %}
+
+                                {% include "FrontProductBundle:Product:oneProductSmall.html.twig" with {'product': product} %}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+
+
+{% endblock body %}
+
+{% block javascripts %}
+    {% if app.debug %}
+        <script src="{{ asset('assets_global/plugins/jquery-ipcheckbox/js/jquery.ipcheckbox.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets_back/global/plugins/ion.rangeslider/js/ion.rangeSlider.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets_back/global/plugins/select2/js/select2.full.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/frontproduct/js/productFilterV.js') }}" type="text/javascript"></script>
+
+    {% else %}
+        {% javascripts
+            'assets_global/plugins/jquery-ipcheckbox/js/jquery.ipcheckbox.js'
+            'assets_back/global/plugins/ion.rangeslider/js/ion.rangeSlider.min.js'
+            'assets_back/global/plugins/select2/js/select2.full.min.js'
+            '@FrontProductBundle/Resources/public/js/productFilterV.js' %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}
+
+    <script>
+
+        $('.container-fluid').find('img').css('width', '100%')
+        $('.container-fluid').css('padding-left', '0')
+        $('.container-fluid').css('padding-right', '0')
+    </script>
+
+{% endblock %}

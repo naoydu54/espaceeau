@@ -1,0 +1,11 @@
+front_reseller_map:
+    path: /
+    defaults: {_controller: FrontResellerBundle:Reseller:index}
+
+front_reseller_get:
+    path: /get-reseller
+    defaults: {_controller: FrontResellerBundle:Reseller:getReseller}
+
+front_reseller_list:
+    path: /list-reseller
+    defaults: {_controller: FrontResellerBundle:Reseller:listReseller}

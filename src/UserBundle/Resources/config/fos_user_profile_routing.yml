@@ -1,0 +1,40 @@
+# profile
+fos_user_profile_show:
+    path: /my-account
+    defaults: { _controller: UserBundle:User:index }
+
+fos_user_profile_edit:
+    path: /my-account/edit
+    defaults: { _controller: FOSUserBundle:Profile:edit }
+
+# address
+front_user_address_index:
+    path: /my-address
+    defaults: { _controller: UserBundle:Address:index }
+
+front_user_address_add:
+    path: /address/add
+    defaults: { _controller: UserBundle:Address:add }
+
+front_user_address_edit:
+    path: /address/edit/{address}
+    defaults: { _controller: UserBundle:Address:edit }
+    requirements:
+        address: \d+
+
+front_user_address_delete:
+    path: /address/delete/{address}
+    defaults: { _controller: UserBundle:Address:delete }
+    requirements:
+        address: \d+
+
+front_user_address_edit_default:
+    path: /address/edit-default/{address}
+    defaults: { _controller: UserBundle:Address:editDefault }
+    requirements:
+        address: \d+
+
+# order
+front_user_order_index:
+    path: /my-order
+    defaults: { _controller: UserBundle:Order:index }

@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ web/$1 [QSA,L]
+
+    Redirect 301 /extracteurs-de-jus-menu-310.html https://www.wismer.fr/menu/12/extracteur
+    Redirect 301 /entreprise-contact.html https://www.wismer.fr/contact/
+    Redirect 301 /marque-liste.html https://www.wismer.fr/page/10/nos-marques
+    Redirect 301 /catalogue.html https://www.wismer.fr/catalogue
+    Redirect 301 /revendeurs.html https://www.wismer.fr/revendeur/
+
+    ErrorDocument 404 /
+    ErrorDocument 500 /
+
+</IfModule>

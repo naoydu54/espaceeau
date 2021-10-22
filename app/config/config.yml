@@ -1,0 +1,273 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
+    - { resource: "@FrontContactBundle/Resources/config/services.yml" }
+    - { resource: "@FrontCartBundle/Resources/config/services.yml" }
+    - { resource: "@FrontOrderBundle/Resources/config/services.yml" }
+    - { resource: "@FrontActualityBundle/Resources/config/services.yml" }
+    - { resource: "@FrontBrandBundle/Resources/config/services.yml" }
+    - { resource: "@FrontCustomerBundle/Resources/config/services.yml" }
+    - { resource: "@FrontGalleryBundle/Resources/config/services.yml" }
+    - { resource: "@FrontMenuBundle/Resources/config/services.yml" }
+    - { resource: "@FrontRestaurantMenuBundle/Resources/config/services.yml" }
+    - { resource: "@FrontProductBundle/Resources/config/services.yml" }
+    - { resource: "@FrontFrontBundle/Resources/config/services.yml" }
+    - { resource: "@AdminAdminBundle/Resources/config/services.yml" }
+    - { resource: "@AdminContactBundle/Resources/config/services.yml" }
+    - { resource: "@AdminProductBundle/Resources/config/services.yml" }
+    - { resource: "@AdminActualityBundle/Resources/config/services.yml" }
+    - { resource: "@AdminMenuBundle/Resources/config/services.yml" }
+    - { resource: "@AdminPageBundle/Resources/config/services.yml" }
+    - { resource: "@AdminSettingBundle/Resources/config/services.yml" }
+    - { resource: "@AdminSliderBundle/Resources/config/services.yml" }
+    - { resource: "@AdminCustomerBundle/Resources/config/services.yml" }
+    - { resource: "@AdminGalleryBundle/Resources/config/services.yml" }
+    - { resource: "@AdminRestaurantBundle/Resources/config/services.yml" }
+    - { resource: "@AdminOrderBundle/Resources/config/services.yml" }
+    - { resource: "@AdminFinderBundle/Resources/config/services.yml" }
+    - { resource: "@AdminCalendarBundle/Resources/config/services.yml" }
+    - { resource: "@AdminCarrierBundle/Resources/config/services.yml" }
+    - { resource: "@AdminPromotionBundle/Resources/config/services.yml" }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: fr
+    upload_dir: '%kernel.root_dir%/../web/uploads'
+
+framework:
+    #esi:            ~
+    translator:     { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+    - 'form/bootstrap_3_horizontal_layout.html.twig'
+    - 'form/form_div_layout.html.twig'
+
+    globals:
+        locales: '%locales%'
+        dev: '%dev%'
+        version: "1.0"
+        entreprise_mail: '%entreprise_mail%'
+        ip_name: '%ip_name%'
+        ip_mail: '%ip_mail%'
+        ip_site: '%ip_site%'
+        back:
+            PHP:    5.0
+            Propel: 1.2
+        front:
+            PHP:    5.2
+            Propel: 1.3
+
+#    exception_controller: FrontFrontBundle:Front:showException
+
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/../var/data/data.sqlite"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
+                filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true
+
+services:
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+        - { name: doctrine.event_subscriber, connection: default }
+        calls:
+        - [ setAnnotationReader, [ '@annotation_reader' ] ]
+
+    fos_user.security.controller:
+      class: UserBundle\Controller\SecurityController
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    encryption: ssl
+    port: 465
+#    spool: { type: memory }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+
+
+    user_class: UserBundle\Entity\User
+    from_email:
+        address: '%entreprise_mail%'
+        sender_name: 'hurom'
+    service:
+        mailer: fos_user.mailer.twig_swift
+    registration:
+        form:
+            type: UserBundle\Form\RegistrationType
+        confirmation:
+            enabled: true
+            template:   '@FOSUser/Registration/email.txt.twig'
+
+
+
+
+
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+        yui_js:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+        yui_css:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+
+liip_imagine:
+    cache: ~
+    # configure resolvers
+    resolvers:
+        # setup the default resolver
+        default:
+            # use the default web path
+            web_path: ~
+    # your filter sets are defined here
+    filter_sets:
+
+        image_custom:
+            quality: 100
+            filters:
+                thumbnail: { size: [1000, 1000], mode: outbound }
+
+        # front
+        image_gallery:
+            quality: 100
+            filters:
+                relative_resize:
+                    widen: 800
+
+        image_brand:
+            quality: 100
+            filters:
+                thumbnail: { size: [210, 150], mode: inset }
+                background: { size: [214, 154], position: center, color: '#ffffff' }
+
+        image_brand_bw:
+            quality: 100
+            filters:
+                thumbnail: { size: [210, 150], mode: inset }
+                background: { size: [214, 154], position: center, color: '#ffffff' }
+                grayscale: ~
+
+jms_i18n_routing:
+    default_locale: '%locale%'
+    locales: '%locales%'
+    strategy: prefix_except_default
+    #strategy: prefix
+
+ewz_recaptcha:
+    public_key:  '%public_key%'
+    private_key: '%private_key%'
+    # Not needed as "%kernel.default_locale%" is the default value for the locale key
+    locale_key:  '%kernel.default_locale%'
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable:   true
+
+ip_bibliotheque:
+    assets_path: /assets/ipbibliotheque
+    include_assets: true
+    include_bootstrap: false
+    include_jQuery: false
+    root_folder: /bibliotheque
+    file:
+        file_class: Admin\AdminBundle\Entity\File
+    folder:
+        folder_class: Admin\AdminBundle\Entity\Folder
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        document:
+            uri_prefix:         /document
+            upload_destination: '%kernel.root_dir%/../web/uploads'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+        product_sheet:
+            upload_destination: '%kernel.root_dir%/../web/uploads'
+            namer: vich_uploader.namer_uniqid
+
+ip_analytics:
+    json_key: '%kernel.root_dir%/Resources/analytics/client_id.json'
+    view_id: 20106086
+
+ip_pdf:
+    default_page: order_form
+    pages:
+        order_form:
+            orientation: p
+            format: A4
+            lang: fr
+            unicode: true
+            encoding: UTF-8
+            margin: [10,10,10,10]
+
+ip_page:
+    fonts:
+        Freeland:
+            name: Freeland
+    custom_site:
+        json_path: /assets_global
+        filename: sections.json

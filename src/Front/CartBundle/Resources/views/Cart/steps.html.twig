@@ -1,0 +1,62 @@
+{#
+step: 'done', 'error', null
+#}
+
+<div class="mt-element-step">
+    <div class="row step-line">
+        <a href="{{ (step1 is not null) ? path('front_cart_index') : 'javascript:;' }}" title="Panier">
+            <div class="col-md-2 mt-step-col first {{ step1 }}">
+                <div class="mt-step-number bg-white">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+                <div class="mt-step-title uppercase">Panier</div>
+            </div>
+        </a>
+
+        <a href="{{ (step2 is not null) ? path('front_order_index') : 'javascript:;' }}" title="Coordonnées">
+            <div class="col-md-2 mt-step-col {{ step2 }}">
+                <div class="mt-step-number bg-white">
+                    <i class="fa fa-address-card"></i>
+                </div>
+                <div class="mt-step-title uppercase">Coordonnées</div>
+            </div>
+        </a>
+
+
+        <a href="{{ (step3 is not null) ? path('front_order_index') : 'javascript:;' }}" title="Transporteur">
+            <div class="col-md-2 mt-step-col {{ step3 }}">
+                <div class="mt-step-number bg-white">
+                    <i class="fa fa-address-card"></i>
+                </div>
+                <div class="mt-step-title uppercase">Transporteur</div>
+            </div>
+        </a>
+
+        <a href="{{ (step4 is not null) ? path('front_order_index') : 'javascript:;' }}" title="Résumé">
+            <div class="col-md-2 mt-step-col {{ step4 }}">
+                <div class="mt-step-number bg-white">
+                    <i class="fa fa-list-alt"></i>
+                </div>
+                <div class="mt-step-title uppercase">Mode de réglement</div>
+            </div>
+        </a>
+
+        <a href="{{ (step5 is not null) ? path('front_order_index') : 'javascript:;' }}" title="Résumé">
+            <div class="col-md-2 mt-step-col {{ step4 }}">
+                <div class="mt-step-number bg-white">
+                    <i class="fa fa-list-alt"></i>
+                </div>
+                <div class="mt-step-title uppercase">Résumé</div>
+            </div>
+        </a>
+
+        <a href="{{ (step6 is not null) ? 'javascript:;' : 'javascript:;' }}" title="Terminé">
+            <div class="col-md-2 mt-step-col last {{ step5 }}">
+                <div class="mt-step-number bg-white">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+                <div class="mt-step-title uppercase">Terminé</div>
+            </div>
+        </a>
+    </div>
+</div>

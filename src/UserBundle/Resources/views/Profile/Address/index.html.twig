@@ -1,0 +1,137 @@
+{% extends "@FrontFront/layout.html.twig" %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - Mon compte{% endblock %}
+{% block meta_description %}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - Mon compte{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{% endblock %}
+
+{% block stylesheets %}
+    {% if app.debug %}
+        <link rel="stylesheet" href="{{ asset('assets_back/global/plugins/bootstrap-dialog/css/bootstrap-dialog.css') }}" type="text/css"/>
+    {% else %}
+        {% stylesheets filter='cssrewrite'
+        'assets_back/global/plugins/bootstrap-dialog/css/bootstrap-dialog.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt50" style="min-height: 550px;">
+        <div class="row mt20 mb20">
+            <div class="col-md-12">
+                {{ include('@User/Profile/tabs.html.twig', {'tab': 'myaddress'}) }}
+
+                {% if user.defaultBillingAddress is not null or user.defaultDeliveryAddress is not null %}
+                    <div class="row">
+                        <h2>Mes adresses par défaut</h2>
+
+                        {% if user.defaultBillingAddress is not null %}
+
+                                <div class="col-md-6">
+                                    <div class="well">
+
+                                    <h3><i class="fa fa-address-card"></i> Adresse de facturation</h3>
+                                    <ul id="default_billing_address">
+                                        <li>{{ user.defaultBillingAddress.civility }} {{ user.defaultBillingAddress.firstname }} {{ user.defaultBillingAddress.lastname }}</li>
+                                        <li>{{ user.defaultBillingAddress.address }}</li>
+                                        <li>{{ user.defaultBillingAddress.postalCode }} {{ user.defaultBillingAddress.city }}</li>
+                                        <li>{{ user.defaultBillingAddress.country.name }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        {% endif %}
+
+                        {% if user.defaultBillingAddress is not null %}
+                            <div class="col-md-6">
+
+                                <div class="well">
+                                    <h3><i class="fa fa-truck"></i> Adresse de livraison</h3>
+                                    <ul id="default_delivery_address">
+                                        <li>{{ user.defaultDeliveryAddress.civility }} {{ user.defaultDeliveryAddress.firstname }} {{ user.defaultDeliveryAddress.lastname }}</li>
+                                        <li>{{ user.defaultDeliveryAddress.address }}</li>
+                                        <li>{{ user.defaultDeliveryAddress.postalCode }} {{ user.defaultDeliveryAddress.city }}</li>
+                                        <li>{{ user.defaultDeliveryAddress.country.name }}</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <div class="row">
+                    <div class="well">
+                        <h2>Gérer mes adresses</h2>
+
+                        <div class="col-md-4"></div>
+                        <div class="col-md-3 text-center">
+                            Addresse de facturation
+                        </div>
+                        <div class="col-md-3 text-center">
+                            Addresse de livraison
+                        </div>
+
+                        {% for address in user.address %}
+                            <div class="row mb20">
+                                <div class="col-md-4">
+                                    <ul>
+                                        <li>{{ address.civility }} {{ address.firstname }} {{ address.lastname }}</li>
+                                        <li>{{ address.address }} {{ address.postalCode }} {{ address.city }}, {{ address.country.name }}</li>
+                                        <li>
+                                            <a href="{{ path('front_user_address_edit', {'address': address.id}) }}" class="btn btn-xs btn-default">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i> Modifier
+                                            </a>
+
+                                            <a href="javascript:;" class="btn btn-xs btn-danger delete-address" data-id="{{ address.id }}">
+                                                <i class="fa fa-times" aria-hidden="true"></i> Supprimer
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="radio">
+                                        <label><input type="radio" id="billing_address_{{ address.id }}" name="billing_address" value="{{ address.id }}" {% if address.isDefaultBilling %}checked="checked"{% endif %}></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-center">
+                                    <div class="radio">
+                                        <label><input type="radio" id="delivery_address_{{ address.id }}" name="delivery_address" value="{{ address.id }}" {% if address.isDefaultDelivery %}checked="checked"{% endif %}></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="height: 5px">
+
+                        {% endfor %}
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <a href="{{ path('front_user_address_add') }}" class="btn btn-primary">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Ajouter une adresse
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% if app.debug %}
+        <script src="{{ asset('assets_back/global/plugins/bootstrap-dialog/js/bootstrap-dialog.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/user/js/addressList.js') }}" type="text/javascript"></script>
+    {% else %}
+        {% javascripts
+        'assets_back/global/plugins/bootstrap-dialog/js/bootstrap-dialog.js'
+        '@UserBundle/Resources/public/js/addressList.js' %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}

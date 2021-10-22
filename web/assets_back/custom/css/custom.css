@@ -1,0 +1,324 @@
+/* ul */
+ul.inline {
+    padding: 0;
+    margin: 0;
+}
+
+ul.inline li {
+    display: inline;
+    list-style: none;
+    padding: 5px;
+}
+
+ul.inline li a {
+    display: inline-block;
+}
+
+ul.nostyle {
+    padding: 0;
+    margin: 0;
+}
+
+ul.nostyle li {
+    list-style: none;
+    padding: 2px 0 2px 0;
+}
+
+a:hover, a:focus, a:active {
+    text-decoration: none;
+}
+
+/* form */
+.required {
+    color: #333333 !important;
+    font-size: .9em !important;
+}
+
+.required:after {
+    content: ' *';
+    color: #ed6b75;
+}
+
+.radio-inline:after {
+    content: '' !important;
+}
+
+/* datatable */
+/*.btn-group-datatable {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn-group-datatable a {
+    margin-bottom: 2px;
+}*/
+
+/* fix btn group */
+.btn-group {
+    white-space: nowrap;
+}
+
+.btn-group .btn {
+    float: none;
+    display: inline-block;
+}
+
+.btn + .dropdown-toggle {
+    margin-left: -4px;
+}
+
+/* summernote */
+.modal-body .form-group {
+    margin: 0 0 15px 0;
+}
+
+.modal-body .checkbox {
+    margin: 10px 0 0 20px;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mr-5 {
+    margin-right: 5px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+/* margin top */
+.mt0 {
+    margin-top: 0;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt15 {
+    margin-top: 15px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt25 {
+    margin-top: 25px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.mt35 {
+    margin-top: 35px;
+}
+
+.mt40 {
+    margin-top: 40px;
+}
+
+.mt45 {
+    margin-top: 45px;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+
+.mt100 {
+    margin-top: 100px;
+}
+
+/* margin bottom */
+.mb0 {
+    margin-bottom: 0;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.mb20 {
+    margin-bottom: 20px !important;
+}
+
+.mb25 {
+    margin-bottom: 25px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}
+
+.mb35 {
+    margin-bottom: 35px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.mb45 {
+    margin-bottom: 45px;
+}
+
+.mb50 {
+    margin-bottom: 50px;
+}
+
+/* margin right */
+.mr10 {
+    margin-right: 10px;
+}
+
+/* margin left */
+.ml10 {
+    margin-left: 10px;
+}
+
+.ml20 {
+    margin-left: 20px !important;
+}
+
+/* padding */
+.padl0 {
+    padding-left: 0;
+}
+
+.padr0 {
+    padding-right: 0;
+}
+
+.page-header.navbar .page-logo .logo-default {
+    margin: 4px 0 0;
+}
+
+/* gallery */
+.gallery {
+    width: 100%;
+    float: left;
+}
+
+.gallery ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.gallery ul li {
+    padding: 7px;
+    border: 1px solid #cccccc;
+    float: left;
+    margin: 10px 7px;
+    background: 0;
+    width: auto;
+    height: auto;
+}
+
+/* color */
+.color-square {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #333333;
+}
+
+.event-preview {
+    padding: 5px;
+    border: 1px solid;
+}
+
+/* table */
+.table > tbody > tr.tr-not-valid {
+    background: #fbe1e3 !important;
+}
+
+.table-hover > tbody > tr.tr-not-valid:hover, .table-hover > tbody > tr.tr-not-valid:hover > td {
+    background: #fef0f1 !important;
+}
+
+/* label */
+.label_shopping_cart_in_process {
+    background-color: #659be0;
+}
+
+.label_abandoned {
+    background-color: #ed6b75;
+}
+
+.label_cancel {
+    background-color: #ed6b75;
+}
+
+.label_waiting_for-payment {
+    background-color: #659be0;
+}
+
+.label_refused_payment {
+    background-color: #ed6b75;
+}
+
+.label_paid {
+    background-color: #36c6d3;
+}
+
+.label_shipped {
+    background-color: #36c6d3;
+}
+
+
+
+.icheckbox_line-grey {
+    height: 26px !important;
+    max-height: 26px !important;
+}
+
+/* offre */
+.checkbox-icheck label {
+    max-width: 150px;
+    overflow: hidden;
+}
+
+.checkbox-icheck img {
+    cursor: pointer;
+}
+
+.img-not-selected {
+    opacity: 0.5;
+}
+
+.img-selected {
+    opacity: 1;
+}
+
+.checkbox-icheck .hover .checked {
+    background-color: #aec866;
+}
+
+.checkbox-icheck .checked {
+    background-color: #78a300;
+}
+
+.icheckbox_line-grey.checked.disabled {
+    background-color: #aec866 !important;
+}

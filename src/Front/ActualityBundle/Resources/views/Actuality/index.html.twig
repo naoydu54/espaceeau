@@ -1,0 +1,53 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(menu.menuTranslations).name }}{% endblock %}
+{% block meta_description %}{{ translate(menu.menuTranslations).metaDesc }}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(menu.menuTranslations).name }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{{ translate(menu.menuTranslations).metaDesc }}{% endblock %}
+
+{% block body %}
+    {% include "FrontFrontBundle:Slider:view.html.twig" with {'slider': menu.slider} %}
+
+    <div class="container mt50">
+        <div class="row mt20">
+            <div class="col-md-12">
+                <h1>{{ translate(menu.menuTranslations).name }}</h1>
+            </div>
+        </div>
+
+        {% if actualitys|length > 0 %}
+
+            {% for actuality in actualitys %}
+                <div class="row mb20">
+                    <div class="col-md-4">
+                        {% if actuality.file %}
+                            <img src="{{ ipBblImageUrl(actuality.file) | image([665,770]) }}" alt="{{ actuality.file.name }}" class="img-responsive">
+                        {% else %}
+                            <img src="{{ '/assets_front/img/no-image.jpg' | image([665,770]) }}" alt="Aucune image">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <h2>{{ translate(actuality.actualityTranslations).name }}</h2>
+                        <div>
+                            <ul>
+                                <li><i class="fa fa-calendar"></i> {{ actuality.dateAdd|date('d/m/Y') }}</li>
+                            </ul>
+                        </div>
+                        <div><a href="{{ path('front_actuality_view', {'actuality': actuality.id, 'slug': translate(actuality.actualityTranslations).slug}) }}">Voir plus...</a></div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <div class="row mb20">
+                <div class="col-md-12">
+                    <p>Aucune actualités pour le moment</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock body %}

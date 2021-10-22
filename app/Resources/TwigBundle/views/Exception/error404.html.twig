@@ -1,0 +1,29 @@
+{% extends "@FrontFront/layout.html.twig" %}
+
+{% block title %}An Error Occurred: {{ status_text }}{% endblock title %}
+{% block meta_description %}{% endblock %}
+
+{% block ogtitle %}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt20 mb20">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <h2 class="text-center decor color mt-20">404</h2>
+                <h2 class="color-theme mb-10">Oops! Une erreur est survenue</h2>
+                <p class="fs-16">{{ exception.message }}</p>
+                <a href="{{ path('front_front_home_index') }}" class="btn btn-default">Accueil <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+{% endblock %}

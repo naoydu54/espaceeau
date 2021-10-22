@@ -1,0 +1,45 @@
+{% extends "@FrontFront/layout.html.twig" %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - Connexion{% endblock %}
+{% block meta_description %}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - Connexion{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{% endblock %}
+
+{% block stylesheets %}
+    {#{% if app.debug %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets_front/vendor/fancybox3/jquery.fancybox.min.css') }}">
+    {% else %}
+        {% stylesheets filter='cssrewrite'
+        'assets_front/vendor/fancybox3/jquery.fancybox.min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+    {% endif %}#}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt50" style="min-height: 550px;">
+        <div class="row mb20">
+            <div class="col-md-12">
+                <h1 class="form-title font-green">{{ 'Réinistialiser votre mot de passe'|trans }}</h1> <br>
+                {% include "@User/Resetting/request_content.html.twig" %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {#{% if app.debug %}
+        <script src="{{ asset('assets_front/vendor/fancybox3/jquery.fancybox.min.js') }}" type="text/javascript"></script>
+    {% else %}
+        {% javascripts
+        'assets_front/vendor/fancybox3/jquery.fancybox.min.js' %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}#}
+{% endblock %}

@@ -1,0 +1,343 @@
+{% set maincolor = "#333" %}
+{% set logoWidth = '194' %}
+{% set logoHeight = '53' %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{{ getSettingByName('COMPANY_NAME') }} mail</title>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Calibri:400,700"/>
+    <style type="text/css">
+        /* EMBEDDED CSS */
+        /* Forces Hotmail to display normal line spacing. */
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+            line-height: 100%;
+        }
+
+        body {
+            -webkit-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+        }
+
+        body, img, div, p, ul, li, span, strong, a {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Resolves webkit padding issue. */
+        table {
+            border-spacing: 0;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        /****** END BUG FIXES ********/
+        /****** END RESETTING DEFAULTS ********/
+        body, #body_style {
+            width: 100% !important;
+            /*min-height: 1000px;*/
+            color: #000;
+            font-family: 'Exo', sans-serif, Arial, Helvetica;
+            font-size: 13px;
+            line-height: 1;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+            outline: none;
+        }
+
+        a:link {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none !important;
+        }
+
+        a[href^="tel"], a[href^="sms"] {
+            text-decoration: none;
+            color: #000;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+            text-decoration: default;
+            color: #000 !important;
+            pointer-events: auto;
+            cursor: default;
+        }
+
+        img {
+            border: none;
+            outline: none;
+            text-decoration: none;
+            height: auto;
+            max-width: 100%;
+        }
+
+        a {
+            border: none !important;
+            outline: none !important;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        tr, td {
+            margin: 0;
+            padding: 0;
+        }
+
+        @media only screen and (max-width: 799px) {
+            table[class="Externalmain"] {
+
+                width: 100% !important;
+            }
+        }
+
+        @media only screen and (max-width: 499px) {
+            table[class="ExternalClass"] {
+                width: 100% !important;
+            }
+
+            img[class="img-width"] {
+                width: 100% !important;
+            }
+
+            td[class="para-box"] {
+                width: 100% !important;
+                display: block !important;
+            }
+
+            table[class="Externalmain"] {
+                background-size: cover !important;
+                width: 100% !important;
+            }
+
+            td[class="img-box1"] {
+                width: 100% !important;
+                display: block !important;
+            }
+
+            td[class="td-height"] {
+                width: 100% !important;
+                display: block !important;
+                height: 15px !important;
+            }
+        }
+    </style>
+</head>
+<body text="#333333" link="#9d470a" bgcolor="#ccc9d0" alink="#9d470a" yahoo="fix" style="width:100% !important; color:#ffffff; font-family: 'Calibri', Arial, Helvetica, sans-serif; font-size:12px; line-height:1;">
+<table width="800" class="Externalmain" cellspacing="0" cellpadding="0" border="0" align="center" style="background: #ccc9d0;background: url({{ absolute_url(asset('bundles/frontcontact/img/mail/main.png')) }}) center 0 no-repeat;">
+    <tr>
+        <td>
+            <table width="500" cellspacing="0" cellpadding="0" border="0" align="center" class="ExternalClass">
+                <tr>
+                    <td>
+                        <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+                            <!-- head section -->
+                            <!-- logo section -->
+                            <tr>
+                                <td><!-- logo table  -->
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+                                        <tr>
+                                            <td>
+                                                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                    <tr>
+                                                        <td height="70"><img width="1" height="1" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="46" style="background:{{ maincolor }};"><img width="1" height="1" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" style="background:{{ maincolor }};"><img width="{{ logoWidth }}" height="{{ logoHeight }}" title="" alt="" src="{{ absolute_url(asset('assets_global/img/logoMail.png')) }}"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="40" style="background:{{ maincolor }};"><img width="1" height="1" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <table width="100%" cellspacing="0" cellpadding="0" border="0" style="text-align: center;background: #ffffff;">
+
+                                                                <tr>
+                                                                    <td height="47"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td style="font-family: 'Calibri', Arial, Helvetica, sans-serif; color: #77737b; font-size: 11px;letter-spacing: 1px;text-transform: uppercase;">{% block smalltitle %}{% endblock %}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="15"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center"><img width="56" height="1" border="0" src="{{ asset('bundles/frontcontact/img/mail/border.png') }}" alt="" title=""></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="15"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="font-480" style="font-family: 'Calibri', Arial, Helvetica, sans-serif; color: #1e1c20;font-size: 30px;letter-spacing: 3px;text-transform: uppercase;font-weight: bold;">{% block bigtitle %}{% endblock %}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="27"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <table width="100%" cellspacing="0" cellpadding="0" border="0" style="text-align: center;background: #ffffff;">
+
+                                                                <tr>
+                                                                    <td width="25"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                    <td>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                                            <tr>
+                                                                                <td style="font-family: 'Calibri', Arial, Helvetica, sans-serif; color: #77737b;font-size:14px;line-height: 24px; ">
+                                                                                    {% block mailcontent %}{% endblock %}
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td height="27"><img width="1" height="1" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                                                        <tr>
+                                                                                            <td align="center">
+                                                                                                <table width="310" cellspacing="0" cellpadding="0" border="0" style="text-align: center;" class="butn-styl">
+                                                                                                    <tr>
+                                                                                                        <td align="center" class="img-box1">
+                                                                                                            <!--<table width="145" cellspacing="0" cellpadding="0" border="0" style="border: 1px solid #180e22;text-align: center;">
+                                                                                                                        <tr>
+                                                                                                                            <td height="15"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td><a style="font-family: 'Calibri', Arial, Helvetica, sans-serif; color: #180e22;font-size: 14px;text-decoration: none;text-transform: uppercase;" href="#">Learn more</a></td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td height="15"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                                                                        </tr>
+
+                                                                                                                    </table>-->
+                                                                                                        </td>
+                                                                                                        <td width="20" class="td-height"><img width="1" height="1" border="0" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                                                                                                        <td align="center" class="img-box1">
+                                                                                                            <!--<table width="145" cellspacing="0" cellpadding="0" border="0" style="background: #625b90;text-align: center;">
+                                                                                                                        <tr>
+                                                                                                                            <td height="15"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td><a style="font-family: 'Calibri', Arial, Helvetica, sans-serif; color: #ffffff;font-size: 14px;text-decoration: none;text-transform: uppercase;" href="#">View Works</a></td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td height="15"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                                                                        </tr>
+
+                                                                                                                    </table>-->
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td height="63"><img width="1" height="1" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td width="25"><img width="1" height="1" border="0" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}" alt="" title=""></td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="background: {{ maincolor }};">
+                                        <tr>
+                                            <td height="20"><img width="1" height="1" border="0" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                    <tr>
+                                                        <td align="center" ><a href="#"><!--<img width="79" height="10" border="0" title="" alt="" src="{{ absolute_url(asset('img/mail/logo.png')) }}">--></a></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="20"><img width="1" height="1" border="0" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="23"><img width="1" height="1" border="0" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <table width="115" cellspacing="0" cellpadding="0" border="0" align="center">
+                                        <tr>
+                                            <!--<td width="11"><a href="#"><img width="11" height="20" border="0" title="" alt="" src="images/fb.png"></a></td>
+                                            <td width="5"><img width="1" height="1" border="0" title="" alt="" src="images/spacer.gif"></td>
+                                            <td width="21"><a href="#"><img width="21" height="16" border="0" title="" alt="" src="images/tweet.png"></a></td>
+                                            <td width="5"><img width="1" height="1" border="0" title="" alt="" src="images/spacer.gif"></td>
+                                            <td width="19"><a href="#"><img width="19" height="18" border="0" title="" alt="" src="images/link.png"></a></td>-->
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table width="100%" cellspacing="0" cellpadding="0" border="0" style="text-align: center;">
+                                        <!--<tr>
+                                            <td height="30"><img width="1" height="1" border="0" title="" alt="" src="images/spacer.gif"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-family: 'Calibri', Arial, Helvetica, sans-serif; color: #ffffff;font-size: 12px;">To stop receiving these emails<a style="font-size: 12px;font-family: 'Calibri', Arial, Helvetica, sans-serif; color: #ffffff;text-decoration: underline;" href="#"> unsubscribe.</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="13"><img width="1" height="1" border="0" title="" alt="" src="images/spacer.gif"></td>
+                                        </tr>-->
+                                        <tr>
+                                            <td style="font-family: 'Calibri', Arial, Helvetica, sans-serif; color: #ffffff;font-size: 12px;">{{ getSettingByName('COMPANY_NAME') }} - {{ "now"|date('Y') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="34"><img width="1" height="1" border="0" title="" alt="" src="{{ absolute_url(asset('bundles/frontcontact/img/mail/spacer.gif')) }}"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

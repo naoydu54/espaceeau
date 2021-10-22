@@ -1,0 +1,65 @@
+<div class="container">
+    {% if slider is not null %}
+        {% if slider.slides | length > 0 %}
+            <div id="slider" class="slider-container">
+
+                {% for key, slide in slider.slides %}
+                    <div class="slide fade-slide" style="background-image: url({{ slide.document.webPath | image([1920,1080]) }});" data-slide="{{ key + 1 }}">
+
+                        {% if slide.layers %}
+                            {% for layer in slide.layers %}
+
+                                {% set fontSize = '' %}
+                                {% if layer.fontSize is not null %}
+                                    {% set fontSize = 'font-size:' ~ layer.fontSize ~ 'px;' %}
+                                {% endif %}
+
+                                <div class="layer" data-type="{{ layer.type }}" data-animation="{{ layer.layerAnimation.value }}" data-fontsize="{{ layer.fontSize }}" style="{{ fontSize }}; left: {{ layer.posX }}%; top: {{ layer.posY }}%;display: none;">
+
+                                    {% if layer.type == 'text' %}
+
+                                        {% set styleBg = '' %}
+                                        {% if layer.background %}
+                                            {% set styleBg = 'background-color: rgba(11, 11, 11, 0.50);' %}
+                                        {% endif %}
+
+                                        {% set styleBold = '' %}
+                                        {% if layer.bold %}
+                                            {% set styleBold = 'font-weight: bold;' %}
+                                        {% endif %}
+
+                                        {% set font = '' %}
+                                        {% if layer.layerFont is not null %}
+                                            {% set font = 'font-family:' ~ layer.layerFont.value ~ ';' %}
+                                        {% endif %}
+
+                                        <span style="color: {{ layer.color }}; {{ styleBg }} {{ styleBold }} {{ font }}">{{ translate(layer.layerTranslations).value }}</span>
+
+                                    {% elseif layer.type == 'button' %}
+
+                                        <a href="{{ layer.url }}" class="btn {{ layer.layerButton.value }}">{{ translate(layer.layerTranslations).value }}</a>
+
+                                    {% endif %}
+
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="slider-nav-container">
+                    <a class="prev"><i class="fa fa-angle-left"></i></a>
+                    <a class="next"><i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+
+            <div id="slider-dot-container">
+                <div style="text-align:center;">
+                    {% for key, slide in slider.slides %}
+                        <span class="dot" data-index="{{ key + 1 }}"></span>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>

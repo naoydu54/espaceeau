@@ -1,0 +1,109 @@
+
+{% for menu in menus %}
+    {% if menu.id == 2 and type != 'footer' %}
+        <li class="dropdown product">
+            <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                {{ translate(menu.menuTranslations).name }}
+                <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="container clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="owl-carousel owl-theme owl-menu">
+
+                                    {% for brand in menu.validBrands %}
+                                        {% if brand.products | length > 0 %}
+                                            {% set product = brand.validProducts.first %}
+
+                                            <a href="{{ path('front_site_brand_view', {'brand': brand.id, 'slug': brand.slug}) }}" title="{{ brand.name }}">
+                                                <div class="item">
+
+                                                    {% if product.files | length > 0 %}
+
+                                                        <img src="{{ ipBblImageUrl(brand.file)  }}" alt="{{ brand.name }}">
+                                                        <img src="{{ ipBblImageUrl(product.files.first.file)  }}" alt="{{ product.files.first.file.name }}">
+
+                                                    {% else %}
+                                                        <img src="{{ ipBblImageUrl(brand.file) | image([150,150], "inset") }}" alt="{{ brand.name }}">
+                                                        <img src="{{ '/assets_front/img/no-image.jpg' | image([200,200]) }}" alt="Aucune image">
+                                                    {% endif %}
+
+                                                </div>
+                                            </a>
+                                        {% endif %}
+                                    {% endfor %}
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    {% elseif menu.children is not empty and type != 'footer' %}
+        <li class="{% if isParent(menu, currentRoute, routeParams) %}active{% endif %} dropdown">
+
+            <a href="{{  path('front_site_menu_index', { 'menu':menu.id , 'slug':translate(menu.menuTranslations).slug}) }}" id="{{ menu.id }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ translate(menu.menuTranslations).name }} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                {% for child in menu.children %}
+                    <li>
+                        {% if child.externalLink %}
+                            {% set path = child.externalLink  %}
+
+                        {% else %}
+                            {% set path =  path('front_site_menu_index', { 'menu':child.id , 'slug':translate(child.menuTranslations).slug})  %}
+
+                        {% endif %}
+                        <a {% if child.externalLink %} target="_blank" {% endif %} href="{{ path }}">
+                            {{ translate(child.menuTranslations).name }}
+
+                        </a>
+                    </li>
+
+                {% endfor %}
+
+
+
+
+            </ul>
+        </li>
+
+
+    {% else %}
+        <li {% if isCurrentRoute(menu, currentRoute, routeParams) %}class="active"{% endif %}>
+
+            {% if menu.id != 2 %}
+                {% if menu.externalLink is not null %}
+                    <a href="{{ menu.externalLink }}" target="_blank" title="{{ menu.externalLink }}">
+                        {{ translate(menu.menuTranslations).name }}
+                    </a>
+                {% else %}
+                    {% if menu.param == 'menu_id' %}
+                        <a   href="{{ path(menu.route, {'menu': menu.id, 'slug': translate(menu.menuTranslations).slug }) }}" title="{{ translate(menu.menuTranslations).name }}" >
+                            {{ translate(menu.menuTranslations).name }}
+                            <hr>
+                        </a>
+                    {% else %}
+                        <a  href="{{ path(menu.route) }}" title="{{ translate(menu.menuTranslations).name }}" rel=”noopener noreferrer” >
+                            {{ translate(menu.menuTranslations).name }}
+                        </a>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                <a href="javascript:;" title="{{ translate(menu.menuTranslations).name }}">
+                    {{ translate(menu.menuTranslations).name }}
+                </a>
+            {% endif %}
+
+        </li>
+    {% endif %}
+
+
+{% endfor %}
+

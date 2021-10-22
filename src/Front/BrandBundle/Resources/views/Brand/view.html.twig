@@ -1,0 +1,84 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - {{ brand.name }}{% endblock %}
+{% block meta_description %}{{ brand.metaDesc }}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - {{ brand.name }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{{ brand.metaDesc }}{% endblock %}
+
+{% block body %}
+    {% include "FrontFrontBundle:Slider:view.html.twig" with {'slider': brand.slider} %}
+
+    <div class="container mt50">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ brand.name }}</h1>
+            </div>
+        </div>
+    </div>
+
+    {{ include(template_from_string(brand.template)) }}
+
+    <div class="container mt50">
+        {% for products in brand.getValidProducts(constant('Admin\\MenuBundle\\Entity\\Menu::NOS_MARQUE')) | batch(4) %}
+            <div class="row">
+                {% for p in products %}
+                    <div class="col-md-3">
+                        {% include "FrontProductBundle:Product:oneProductSmall.html.twig" with {'product': p} %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if menuChildrens | length > 0 %}
+        {% for menu in menuChildrens %}
+            <div class="container-fluid mt50 sub-menu">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="mb20">
+                                <a href="{{ path(menu.route, {'menu': menu.id, 'slug': translate(menu.menuTranslations).slug }) }}" title="{{ translate(menu.menuTranslations).name }}">
+                                    {{ translate(menu.menuTranslations).name }}
+                                    <small>Voir plus</small>
+                                    <hr>
+                                </a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt50">
+            {% if menu.getLastProducts | length > 0 %}
+                <div class="row">
+                    <div class="owl-carousel owl-carouselSubItem owl-theme owl-nome ">
+                        {% for product in menu.getLastProducts %}
+
+                            {% include "FrontProductBundle:Product:oneProductSmall.html.twig" with {'product': product} %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock body %}
+
+
+{% block javascripts %}
+    {% if app.debug %}
+
+        <script src="{{ asset('bundles/frontbrand/js/brand.js') }}" type="text/javascript"></script>
+    {% else %}
+        {% javascripts
+
+            '@FrontBrandBundle/Resources/public/js/brand.js' %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,55 @@
+front_front:
+    resource: "@FrontFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
+front_menu:
+    resource: "@FrontMenuBundle/Resources/config/routing.yml"
+    prefix:   /menu/
+
+front_actuality:
+    resource: "@FrontActualityBundle/Resources/config/routing.yml"
+    prefix:   /actuality/
+
+front_brand:
+    resource: "@FrontBrandBundle/Resources/config/routing.yml"
+    prefix:   /brand/
+
+front_customer:
+    resource: "@FrontCustomerBundle/Resources/config/routing.yml"
+    prefix:   /customer/
+
+front_gallery:
+    resource: "@FrontGalleryBundle/Resources/config/routing.yml"
+    prefix:   /gallery/
+
+front_restaurant_menu:
+    resource: "@FrontRestaurantMenuBundle/Resources/config/routing.yml"
+    prefix:   /restaurant-menu/
+
+front_product:
+    resource: "@FrontProductBundle/Resources/config/product_routing.yml"
+    prefix:   /product/
+
+front_product_attribut:
+    resource: "@FrontProductBundle/Resources/config/product_attribut_routing.yml"
+    prefix:   /product-attribut/
+
+front_contact:
+    resource: "@FrontContactBundle/Resources/config/routing.yml"
+    prefix:   /contact/
+
+front_user:
+    resource: "@UserBundle/Resources/config/user_routing.yml"
+    prefix:   /user
+
+front_cart:
+    resource: "@FrontCartBundle/Resources/config/cart_routing.yml"
+    prefix:   /cart
+
+front_order:
+    resource: "@FrontOrderBundle/Resources/config/order_routing.yml"
+    prefix:   /order
+
+front_reseller:
+    resource: "@FrontResellerBundle/Resources/config/reseller_routing.yml"
+    prefix:   /revendeur

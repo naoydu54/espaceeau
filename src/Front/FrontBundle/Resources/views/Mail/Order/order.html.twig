@@ -1,0 +1,389 @@
+{% extends '@FrontFront/Mail/layout.html.twig' %}
+
+{% block title %}
+    {% if title is not null %}
+
+
+        {% if title.name == "cheque" %}
+            Commande en attente de paiement
+
+        {% else %}
+            {{ title.name }}
+        {% endif %}
+
+    {% endif %}
+{% endblock %}
+
+{% block sub_title %}
+    Bonjour, {{ order.user.civility }} {{ order.user.firstname }} {{ order.user.lastname }}
+{% endblock %}
+
+{% block body %}
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;background: #ffffff;">
+                <tr>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                            <tr>
+                                <td class="img-box3" style="vertical-align: top;">
+                                    <table class="para-table" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        {% if title is not null %}
+
+                                            <tr>
+                                                <td>
+
+                                                    {% if title.name =='Commande annulée' or title.name == 'Paiement annulé' %}
+                                                        Votre commande {{ order.reference }} sur le site <b>huromfrance.com</b>
+                                                        a été annulée, veuillez nous contacter pour plus de détails.
+
+                                                    {% elseif title.name == 'Commande expédiée' %}
+                                                        Votre commande {{ order.reference }} sur le site <b>huromfrance.com</b>
+                                                        a été expédiée
+
+                                                    {% elseif title.name == 'Commande payée' %}
+                                                        Votre paiement pour la commande {{ order.reference }} sur le site <b>huromfrance.com</b> a bien été reçu. <br>
+                                                        Votre commande est en cours de traitement
+
+                                                    {% elseif title.name =='paiement refusée' or title.name == 'Paiement refusé' %}
+                                                        Votre commande {{ order.reference }} sur le site <b>huromfrance.com</b> a été refusée,   veuillez nous contacter pour plus de détails.
+
+
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            {% if title.name == "cheque" %}
+                                                <tr>
+                                                    <td>
+                                                        Votre commande {{ order.reference }} sur le site <b>huromfrance.com</b> <br>
+                                                        <b>Vous avez demandé le paiement par chèque</b> <br><br><br>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        Merci de bien vouloir nous faire parvenir votre règlement par chèque dans les meilleurs délais à l'adresse suivante : <br> <br><br>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>WISMER</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Zone Inova 3000, allée 5</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>88150 CAPAVENIR VOSGES</td>
+                                                    <br><br><br>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        Vous pouvez également régler en 3 fois sans frais, en nous envoyant 3 chèques du montant divisé par 3, avec les dates de retrait inscrites au dos des chèques.
+
+                                                        À la réception de votre règlement, nous expédierons la commande.
+
+                                                    </td>
+
+                                                </tr>
+
+                                            {% elseif title.name == "virement" %}
+                                                <tr>
+                                                    <td>
+                                                        Votre commande {{ order.reference }} sur le site <b>huromfrance.com</b> <br>
+                                                        <b>Vous avez demandé le paiement par virement bancaire</b> <br><br><br>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>
+                                                        Merci de bien vouloir nous faire parvenir votre règlement par virement via les coordonnées présent dans le rib en pièce jointe : <br> <br><br>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>WISMER</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Zone Inova 3000, allée 5</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>88150 CAPAVENIR VOSGES</td>
+                                                    <br><br><br>
+                                                </tr>
+
+
+                                            {% endif %}
+                                        {% endif %}
+                                        <tr>
+                                            <td height="10"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size:16px;text-transform: uppercase;">
+                                                Détail de la commande
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr style="text-align: left;">
+                                            <td>
+                                                <strong>Commande:</strong> {{ order.reference }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="10"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr style="text-align: left;">
+                                            <td>
+                                                <strong>Date:</strong> {{ order.dateUpdate|date('d/m/Y H:m:i') }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="2"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr style="text-align: left;">
+                                            <td>
+                                                <strong>Mode de réglement:</strong> {{ order.paymentMethod }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="2"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr style="text-align: left;">
+                                            <td>
+                                                <strong>Transporteur:</strong> {{ order.transporter }}
+                                            </td>
+                                        </tr>
+
+                                        {% if  order.numberShipping %}
+                                            <tr style="text-align: left;">
+                                                <td>
+                                                    <strong>Numéro de suivi:</strong> {{ order.numberShipping }}
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;background: #ffffff;">
+                <tr>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                            <tr>
+                                <td>
+                                    <table class="para-table" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;">
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #77737b;font-size:14px;line-height: 200%;">
+                                                <table class="para-table" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;border:1px solid #d6d4d4;">
+                                                    <tr style="background-color: #ececec;border:1px solid #d6d4d4;">
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;"><strong>Produit</strong></td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;"><strong>Référence</strong></td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;"><strong>Prix unitaire</strong></td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;"><strong>Quantité</strong></td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;"><strong>Prix total</strong></td>
+                                                    </tr>
+                                                    {% for orderElement in order.orderElements %}
+                                                        <tr>
+                                                            <td style="padding: 10px;border:1px solid #d6d4d4;">
+                                                                <p>{{ orderElement.name }}</p>
+                                                                <br>
+
+                                                                {% if orderElement.orderElementAttributs | length > 0 %}
+                                                                    <small>
+                                                                        {% for orderElementAttribut in orderElement.orderElementAttributs %}
+                                                                            {{ orderElementAttribut.name }}{% if not loop.last %},{% endif %}
+                                                                        {% endfor %}
+                                                                    </small>
+                                                                {% elseif orderElement.orderElementEvent is not null %}
+                                                                    <p>{{ orderElement.orderElementEvent.name }}
+
+                                                                        {% if orderElement.orderElementEvent.dateStart is not null %}
+                                                                            du {{ orderElement.orderElementEvent.dateStart | date('d/m/Y') }}
+                                                                            {% if orderElement.orderElementEvent.timeStart is not null %}
+                                                                                à {{ orderElement.orderElementEvent.timeStart | date('H:i') }}
+                                                                            {% endif %}
+                                                                        {% endif %}
+
+                                                                        {% if orderElement.orderElementEvent.dateEnd is not null %}
+                                                                            au {{ orderElement.orderElementEvent.dateEnd | date('d/m/Y') }}
+                                                                            {% if orderElement.orderElementEvent.timeEnd is not null %}
+                                                                                à {{ orderElement.orderElementEvent.timeEnd | date('H:i') }}
+                                                                            {% endif %}
+                                                                        {% endif %}
+                                                                    </p>
+                                                                    <br>
+
+                                                                    <p>
+                                                                        {{ orderElement.orderElementEvent.civility }} {{ orderElement.orderElementEvent.firstname }} {{ orderElement.orderElementEvent.lastname }}
+
+                                                                        {% if orderElement.orderElementEvent.orderElementEventAttributs | length > 0 %}
+                                                                            -
+                                                                            {% for orderElementEventAttribut in orderElement.orderElementEvent.orderElementEventAttributs %}
+                                                                                {{ orderElementEventAttribut.name }}{% if not loop.last %}-{% endif %}
+                                                                            {% endfor %}
+                                                                        {% endif %}
+                                                                    </p>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td style="padding: 10px;border:1px solid #d6d4d4;">{{ orderElement.reference }}</td>
+                                                            <td style="padding: 10px;border:1px solid #d6d4d4;">{{ orderElement.priceTtc | price(2) }}</td>
+                                                            <td style="padding: 10px;border:1px solid #d6d4d4;">{{ orderElement.quantity }}</td>
+                                                            <td style="padding: 10px;border:1px solid #d6d4d4;">{{ orderElement.totalOrderElement | price(2) }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+
+                                                    {% if order.promotionName is not null %}
+
+                                                        <tr>
+                                                            <td style="color: red";>Produit Offert : {{  order.promotionName }}   </td>
+                                                            <td style="color: red;">{{ order.promotionName }} </td>
+
+                                                            <td  style="color: red;"> 0 </td>
+                                                            <td  style="color: red;"> </td>
+                                                            <td  style="color: red;"> 0 </td>
+                                                        </tr>
+                                                    {% endif %}
+
+
+
+                                                    <tr>
+                                                        <td colspan="3" style="padding: 10px;border:1px solid #d6d4d4;text-align: right;"><strong>Montant HT</strong></td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;">{{ order.total('HT') | price(2) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" style="padding: 10px;border:1px solid #d6d4d4;text-align: right;"><strong>TVA</strong></td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;">{{ order.totalTva | price(2) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" style="padding: 10px;border:1px solid #d6d4d4;text-align: right;"><strong>Livraison</strong></td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;">{{ order.shippingPrice | price(2) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" style="padding: 10px;border:1px solid #d6d4d4;text-align: right;"><strong>Total TTC</strong></td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;">{{ order.total | price(2) }}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;background: #ffffff;">
+                <tr>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                            <tr>
+                                <td>
+                                    <table class="para-table" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;">
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #77737b;font-size:14px;line-height: 200%;">
+                                                <table class="para-table" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;border:1px solid #d6d4d4;">
+                                                    <tr style="background-color: #ececec;border:1px solid #d6d4d4;">
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;"><strong>Adresse de livraison</strong></td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;"><strong>Adresse de facturation</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;text-align: center;">
+                                                            <strong>{{ order.deliveryAddress.civility }} {{ order.deliveryAddress.firstname }} {{ order.deliveryAddress.lastname }}</strong>
+                                                            <br>
+                                                            {{ order.deliveryAddress.address }}
+                                                            <br>
+                                                            {{ order.deliveryAddress.postalCode }} {{ order.deliveryAddress.city }}
+                                                            <br>
+                                                            {{ order.deliveryAddress.country }}
+                                                        </td>
+                                                        <td style="padding: 10px;border:1px solid #d6d4d4;text-align: center;">
+                                                            <strong>{{ order.billingAddress.civility }} {{ order.billingAddress.firstname }} {{ order.billingAddress.lastname }}</strong>
+                                                            <br>
+                                                            {{ order.billingAddress.address }}
+                                                            <br>
+                                                            {{ order.billingAddress.postalCode }} {{ order.billingAddress.city }}
+                                                            <br>
+                                                            {{ order.billingAddress.country }}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;background: #ffffff;">
+                <tr>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                            <tr>
+                                <td class="img-box3" style="vertical-align: top;">
+                                    <table class="para-table" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="{{absolute_url( path('front_user_order_index') )}}" title="{{ getSettingByName('COMPANY_NAME') }} - Mes Commande" target="_blank"> Vous pouvez consulter le suivi de votre commande sur votre compte </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+{% endblock %}

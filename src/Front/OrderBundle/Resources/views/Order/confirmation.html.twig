@@ -1,0 +1,43 @@
+{% extends "@FrontFront/layout.html.twig" %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - Confirmation{% endblock %}
+{% block meta_description %}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - Confirmation{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{% endblock %}
+
+{% block stylesheets %}
+    {% if app.debug %}
+        <link rel="stylesheet" href="{{ asset('assets_front/css/steps.css') }}" type="text/css">
+    {% else %}
+        {% stylesheets filter='cssrewrite'
+            'assets_front/css/steps.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt50" style="min-height: 550px;">
+        {{ include('@FrontCart/Cart/steps.html.twig', {'step1': 'done', 'step2': 'done', 'step3': 'done', 'step4' : 'done', 'step5' : 'done', 'step6': 'inprocess'}) }}
+
+        <div class="row mb20">
+            <div class="col-md-12">
+                <h2 class="mb20">
+                    Commande terminée
+                </h2>
+                <p>
+                    Merci d'avoir effectué vos achats sur {{ getSettingByName('COMPANY_NAME') }}
+                </p>
+                <p>Un mail de confirmation vous a été envoyé.</p>
+                <p>
+                    Pour voir les détails de votre commande <a href="{{ path('front_user_order_index') }}" title="Mes commandes">cliquez-ici</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% if products | length %}
+    {% for products in products | batch(4) %}
+        <div class="row">
+            {% for p in products %}
+                <div class="col-md-3">
+                    {% include "FrontProductBundle:Product:oneProductShop.html.twig" with {'product': p} %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Aucun produit ne correspond à vos critères</p>
+{% endif %}

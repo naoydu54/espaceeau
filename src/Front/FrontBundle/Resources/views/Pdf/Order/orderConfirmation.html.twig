@@ -1,0 +1,337 @@
+<style type="text/css">
+    page {
+        color: #717375;
+    }
+
+    p {
+        margin: 0 0 10px 0;
+        padding: 0;
+    }
+
+    table {
+        width: 100%;
+        line-height: 5mm;
+        border-collapse: collapse;
+        border: 1px solid #d6d4d4;
+        text-align: center;
+    }
+
+    table tr.header {
+        background-color: #ececec;
+    }
+
+    table tr {
+        border: 1px solid #d6d4d4;
+    }
+
+    table tr td {
+        padding: 10px;
+        border: 1px solid #d6d4d4;
+    }
+
+    h2 {
+        margin: 0;
+        padding: 0;
+    }
+
+    hr {
+        border-top: 1px solid #d6d4d4;
+        color: #d6d4d4;
+    }
+
+    .border th {
+        border: 1px solid #000;
+        color: white;
+        background: #000;
+        padding: 5px;
+        font-weight: normal;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .border td {
+        border: 1px solid #CFD1D2;
+        padding: 5px 10px;
+        text-align: center;
+    }
+
+    .no-border {
+        border-right: 1px solid #CFD1D2;
+        border-left: none;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    .space {
+        padding-top: 250px;
+    }
+
+    .w10p {
+        width: 10%;
+    }
+
+    .w15p {
+        width: 15%;
+    }
+
+    .w25p {
+        width: 25%;
+    }
+
+    .w50p {
+        width: 50%;
+    }
+
+    .w60p {
+        width: 60%;
+    }
+
+    .w75p {
+        width: 75%;
+    }
+
+    .w100p {
+        width: 100%;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    .footer {
+        text-align: center;
+        font-size: 10px;
+        color: #717375;
+    }
+
+    .footer p {
+        padding: 0;
+        margin: 0;
+    }
+
+    .mb20 {
+        margin-bottom: 20px;
+    }
+
+    .mt20 {
+        margin-top: 20px;
+    }
+
+    .mb5 {
+        margin: 0 0 5px 0;
+    }
+
+
+</style>
+
+<page backtop="20mm" backleft="10mm" backright="10mm" backbottom="10mm">
+    <page_header  class="center mb20">
+        {% if app.request is null %}
+            <img style="  width: 268px; margin-bottom: 10%" height="150px" src="{{ 'https://huromfrance.com/' ~ asset('assets_global/img/logo_pdf.jpg') }}" alt="{{ getSettingByName('COMPANY_NAME') }}"> <br><br><br><br>
+
+        {% else %}
+                <img style="  width: 268px; margin-bottom: 10%" height="150px" src="{{ app.request.schemeAndHttpHost ~ asset('assets_global/img/logo_pdf.jpg') }}" alt="{{ getSettingByName('COMPANY_NAME') }}"> <br><br><br><br>
+
+        {% endif %}
+    </page_header>
+
+    <page_footer class="footer ">
+        <hr/>
+        <p >
+            {{ getSettingByName('COMPANY_NAME') }}
+
+            {% if getSettingByName('COMPANY_ADDRESS') %}
+                - {{ getSettingByName('COMPANY_ADDRESS') | striptags | raw }}
+            {% endif %}
+            - contact@huromfrance.com | 03 29 82 27 71 | huromfrance.com.fr
+
+        </p>
+
+        {% if getContactInformation('tel_fixe') %}
+            <p>
+                Tél: {{ getContactInformation('tel_fixe') }}
+            </p>
+        {% endif %}
+
+        {% if getContactInformation('email') %}
+            <p>
+                Email: {{ getContactInformation('email') }}
+            </p>
+        {% endif %}
+    </page_footer>
+
+  <div style="margin-top: 2%">
+      <p>
+          Bon de commande n°{{ order.reference }}
+      </p>
+      <br>
+
+      <p>
+          <strong>Date:</strong> {{ order.dateUpdate|date('d/m/Y H:m:i') }}
+      </p>
+      <p>
+          {#<strong>Mode de réglement:</strong> {{ order.paymentMethod }}#}
+      </p>
+      <p>
+          <strong>Transporteur</strong> {{ order.transporter }}
+      </p>
+      <br>
+  </div>
+
+
+
+    {% if order.user.cellPhone is not null %}
+        <p>
+            <strong>Portable:</strong> {{ order.user.cellPhone }}
+        </p>
+    {% endif %}
+
+    {% if order.user.email is not null %}
+        <p>
+            <strong>Email:</strong> {{ order.user.email }}
+        </p>
+    {% endif %}
+
+    <table class="#">
+        <tr class="header">
+            <td class="w50p"><strong>Adresse de livraison</strong></td>
+            <td class="w50p"><strong>Adresse de facturation</strong></td>
+        </tr>
+        <tr>
+            <td>
+                <strong>{{ order.deliveryAddress.civility }} {{ order.deliveryAddress.firstname }} {{ order.deliveryAddress.lastname }}</strong>
+                <br>
+                {{ order.deliveryAddress.address }}
+                <br>
+                {{ order.deliveryAddress.postalCode }} {{ order.deliveryAddress.city }}
+                <br>
+                {{ order.deliveryAddress.country }}
+            </td>
+            <td>
+                <strong>{{ order.billingAddress.civility }} {{ order.billingAddress.firstname }} {{ order.billingAddress.lastname }}</strong>
+                <br>
+                {{ order.billingAddress.address }}
+                <br>
+                {{ order.billingAddress.postalCode }} {{ order.billingAddress.city }}
+                <br>
+                {{ order.billingAddress.country }}
+            </td>
+        </tr>
+    </table>
+
+    <table class="mb20 mt20">
+        <tr class="header">
+            <td class="w25p"><strong>Produit</strong></td>
+            <td class="w15p"><strong>Référence</strong></td>
+            <td class="w25p"><strong>Prix unitaire</strong></td>
+            <td class="w15p"><strong>Quantité</strong></td>
+            <td class="w25p"><strong>Prix total</strong></td>
+        </tr>
+        {% for orderElement in order.orderElements %}
+            <tr>
+                <td>
+                    <p>{{ orderElement.name }}</p>
+
+                    {% if orderElement.orderElementAttributs | length > 0 %}
+                        <p class="mb5">
+                            <small>
+                                {% for orderElementAttribut in orderElement.orderElementAttributs %}
+                                    {{ orderElementAttribut.name }}{% if not loop.last %},{% endif %}
+                                {% endfor %}
+                            </small>
+                        </p>
+                    {% elseif orderElement.orderElementEvent is not null %}
+                        <p>
+                            {{ orderElement.orderElementEvent.name }}
+
+                            {% if orderElement.orderElementEvent.dateStart is not null %}
+                                du {{ orderElement.orderElementEvent.dateStart | date('d/m/Y') }}
+                                {% if orderElement.orderElementEvent.timeStart is not null %}
+                                    à {{ orderElement.orderElementEvent.timeStart | date('H:i') }}
+                                {% endif %}
+                            {% endif %}
+
+                            {% if orderElement.orderElementEvent.dateEnd is not null %}
+                                <br>
+                                au {{ orderElement.orderElementEvent.dateEnd | date('d/m/Y') }}
+                                {% if orderElement.orderElementEvent.timeEnd is not null %}
+                                    à {{ orderElement.orderElementEvent.timeEnd | date('H:i') }}
+                                {% endif %}
+                            {% endif %}
+                        </p>
+
+                        <p>
+                            {{ orderElement.orderElementEvent.civility }} {{ orderElement.orderElementEvent.firstname }} {{ orderElement.orderElementEvent.lastname }}
+
+                            {% if orderElement.orderElementEvent.orderElementEventAttributs | length > 0 %}
+                                -
+                                {% for orderElementEventAttribut in orderElement.orderElementEvent.orderElementEventAttributs %}
+                                    {{ orderElementEventAttribut.name }}{% if not loop.last %}-{% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </p>
+
+                    {% endif %}
+
+                </td>
+                <td>{{ orderElement.reference  }}</td>
+                <td>{{ orderElement.priceTtc | price(2) }}</td>
+                <td>{{ orderElement.quantity }}</td>
+                <td>{{ orderElement.totalOrderElement | price(2) }}</td>
+            </tr>
+
+
+        {% endfor %}
+        {% if cart.promotion is not null %}
+
+        <tr>
+            <td><p style="color: red;"><b>Produit Offert : {{  cart.promotion.name }}   </b></p></td>
+                <td><p style="color: red;"><b> {{ cart.promotion.product.reference }} </b></p></td>
+
+            <td><p style="color: red;"><b> 0 </b></p></td>
+            <td><p style="color: red;"><b> 1 </b></p></td>
+            <td><p style="color: red;"><b> 0 </b></p></td>
+        </tr>
+        {% endif %}
+
+        {% for cartElement in  cart.cartElements %}
+            {% if cartElement.promotion is not null %}
+                <tr>
+                    <td><p style="color: red;"><b>Produit Offert :  {{ cartElement.promotion.name }}  </b></p></td>
+                    <td><p style="color: red;"><b> {{ cartElement.promotion.product.reference }} </b></p></td>
+
+                    <td><p style="color: red;"><b> 0 </b></p></td>
+                    <td><p style="color: red;"><b> 1 </b></p></td>
+                    <td><p style="color: red;"><b> 0 </b></p></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+
+
+        <tr></tr>
+
+        <tr>
+            <td colspan="3" class="right"><strong>Montant HT</strong></td>
+            <td>{{ order.total('HT') | price(2) }}</td>
+        </tr>
+
+        <tr>
+            <td colspan="3" class="right"><strong>TVA</strong></td>
+            <td>{{ order.totalTva | price(2) }}</td>
+        </tr>
+
+        <tr>
+            <td colspan="3" class="right"><strong>Livraison (TTC)</strong></td>
+            <td>{{ order.shippingPrice | price(2) }}</td>
+        </tr>
+
+        <tr>
+            <td colspan="3" class="right"><strong>Total</strong></td>
+            <td>{{ order.total | price(2) }}</td>
+        </tr>
+    </table>
+</page>

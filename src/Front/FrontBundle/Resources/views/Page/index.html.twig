@@ -1,0 +1,26 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(page.pageTranslations).name }}{% endblock %}
+{% block meta_description %}{{ translate(page.pageTranslations).metaDesc }}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(page.pageTranslations).name }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{{ translate(page.pageTranslations).metaDesc }}{% endblock %}
+
+{% block body %}
+
+    {% include "FrontFrontBundle:Slider:view.html.twig" with {'slider': slider} %}
+
+    <div class="container mt50">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ translate(page.pageTranslations).name }}</h1>
+            </div>
+        </div>
+    </div>
+
+    {{ include(template_from_string(translate(page.pageTranslations).template)) }}
+{% endblock body %}

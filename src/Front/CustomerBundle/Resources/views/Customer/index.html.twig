@@ -1,0 +1,46 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(menu.menuTranslations).name }}{% endblock %}
+{% block meta_description %}{{ translate(menu.menuTranslations).metaDesc }}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(menu.menuTranslations).name }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{{ translate(menu.menuTranslations).metaDesc }}{% endblock %}
+
+{% block body %}
+    <div class="container mt50">
+        <div class="row">
+            <h1 class="text-center">Nos clients</h1>
+        </div>
+
+        {#{% if translate(page.pageTranslations).template is not empty %}
+            <div class="row">
+                <h2>Description</h2>
+
+                <div class="col-md-12 description">
+                    {{ include(template_from_string(translate(page.pageTranslations).template)) }}
+                </div>
+            </div>
+        {% endif %}#}
+
+        {% if customers|length > 0 %}
+            <div class="row">
+                {% for customer in customers %}
+                    <div class="col-md-3">
+                        <div class="single-services">
+                            {% if customer.file is not null %}
+                                <img src="{{ ipBblImageUrl(customer.file) | image([400,240]) }}" class="img-responsive" alt="{{ customer.file.name }}">
+                            {% else %}
+                                <img src="{{ '/assets_front/img/no-image.jpg' | image([400,240]) }}" alt="Aucune image">
+                            {% endif %}
+                            <h4>{{ customer.name }}</h4>
+                            <p>{{ customer.description|raw }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock body %}

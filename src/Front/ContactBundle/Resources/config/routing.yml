@@ -1,0 +1,10 @@
+front_contact_index:
+    path:     /
+    defaults: { _controller: FrontContactBundle:Contact:index }
+
+front_contact_mail_view:
+    path:     /mailview
+    defaults: { _controller: FrontContactBundle:Contact:mailView }
+
+
+

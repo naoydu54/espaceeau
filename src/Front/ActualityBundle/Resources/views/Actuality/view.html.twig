@@ -1,0 +1,43 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(actuality.actualityTranslations).name }}{% endblock %}
+{% block meta_description %}{{ translate(actuality.actualityTranslations).metaDesc }}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(actuality.actualityTranslations).name }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+
+{% set actualityDocument = app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') %}
+{% if actuality.file %}
+    {% set actualityDocument = ipBblImageUrl(actuality.file) | image([400,270]) %}
+{% endif %}
+
+{% block ogimage %}{{ actualityDocument }}{% endblock %}
+{% block ogdescription %}{{ translate(actuality.actualityTranslations).metaDesc }}{% endblock %}
+
+{% block body %}
+    <div class="container mt50">
+        <div class="row">
+            <h1>
+                {{ translate(actuality.actualityTranslations).name }}
+                <small><i class="fa fa-calendar"></i> {{ actuality.dateAdd|date('d/m/Y') }}</small>
+            </h1>
+
+            {% if actuality.file %}
+                <img src="{{ ipBblImageUrl(actuality.file) | image([400,270]) }}" alt="{{ actuality.file.name }}">
+            {% else %}
+                <img src="{{ '/assets_front/img/no-image.jpg' | image([400,270]) }}" alt="Aucune image">
+            {% endif %}
+
+            {{ translate(actuality.actualityTranslations).description | raw }}
+        </div>
+
+        <div class="row mt20 mb40">
+            <div class="col-md-12">
+                <div class="page-content box-wrapper">
+                    <a href="{{ path('front_actuality_index') }}">Voir l'historique des actualités</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

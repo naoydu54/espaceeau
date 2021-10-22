@@ -1,0 +1,49 @@
+<div class="row mb10 menu-product">
+    <div class="col-md-4 col-sm-6">
+        <h4>{{ translate(product.productTranslations).name }}</h4>
+        <p>{{ translate(product.productTranslations).metaDesc }}</p>
+        <p class="mt20">
+            <a href="{{ path('front_site_product_view', {'product': product.id, 'slug': translate(product.productTranslations).slug}) }}" title="{{ translate(product.productTranslations).name }}" class="btn btn-primary">
+                <i class="fa fa-angle-right"></i> Voir plus
+            </a>
+        </p>
+    </div>
+
+    <div class="col-md-4 col-sm-6">
+        {% if product.files|length > 0 %}
+            <img src="{{ ipBblImageUrl(product.files.first.file) | image([600,600]) }}" class="img-responsive" alt="{{ product.files.first.file.name }}">
+        {% else %}
+            <img src="{{ '/assets_front/img/no-image.jpg' | image([600,600]) }}" alt="Aucune image" class="img-responsive">
+        {% endif %}
+    </div>
+
+    <div class="col-md-4 col-sm-6 feature-box">
+        {% for featureElementValueProduct in product.featureElementValueProducts %}
+            {% if featureElementValueProduct.isHighlight %}
+                <div class="row mb20">
+                    <div class="col-md-2">
+                        {{ featureElementValueProduct.featureElementValue.featureElement.icon.value | raw }}
+                    </div>
+                    <div class="col-md-10">
+                        <h3>
+                            {{ translate(featureElementValueProduct.featureElementValue.featureElement.featureElementTranslations).name }}
+                        </h3>
+
+                        {% if featureElementValueProduct.featureElementValue.featureElement.featureElementCategory.nameCanonical == 'couleur' %}
+                            <div class="square pull-left mr10" style="background-color: {{ featureElementValueProduct.featureElementValue.color }}"></div>
+
+                            <strong class="pull-left">
+                                {{ translate(featureElementValueProduct.featureElementValue.featureElementValueTranslations).name }}
+                            </strong>
+                        {% else %}
+                            <p>
+                                {{ translate(featureElementValueProduct.featureElementValue.featureElementValueTranslations).name }}
+                            </p>
+                        {% endif %}
+
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

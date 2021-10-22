@@ -1,0 +1,49 @@
+front_order_index:
+    path:     /
+    defaults: { _controller: FrontOrderBundle:Order:index }
+
+front_order_address_list:
+    path:     /address-list
+    defaults: { _controller: FrontOrderBundle:Order:addressList }
+
+front_order_address_change:
+    path:     /address-change
+    defaults: { _controller: FrontOrderBundle:Order:addressChange }
+
+front_order_confirmation:
+    path:     /confirmation
+    defaults: { _controller: FrontOrderBundle:Order:confirmation }
+
+front_order_carrier:
+    path:     /carrier
+    defaults: { _controller: FrontOrderBundle:Order:carrier }
+
+front_order_add_carrier:
+    path:     /add_carrier/{carrier}
+    defaults: { _controller: FrontOrderBundle:Order:selectCarrier }
+    requirements :
+        carrier: \d+
+
+front_order_resume:
+    path:     /order-resume/{paymentType}/{configPayment}
+    defaults: { _controller: FrontOrderBundle:Order:resumeOrder }
+
+front_order_select_payment:
+    path:     /order-payement/
+    defaults: { _controller: FrontOrderBundle:Order:selectPayment }
+
+
+#front_order_payment:
+#    path:     /order-payement/{payment}
+#    defaults: { _controller: FrontOrderBundle:Order:Payment }
+#    requirements :
+#        payments: \d+
+
+front_order_payment_check:
+    path:     /order-payement-check
+    defaults: { _controller: FrontOrderBundle:Order:checkPayment }
+
+
+front_order_payment_error:
+    path:     /order-payement-error
+    defaults: { _controller: FrontOrderBundle:Order:Error }

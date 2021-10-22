@@ -1,0 +1,113 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - Confirmation{% endblock %}
+{% block meta_description %}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - Confirmation{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{% endblock %}
+
+{% block stylesheets %}
+    {% if app.debug %}
+        <link rel="stylesheet" href="{{ asset('assets_front/css/steps.css') }}" type="text/css">
+    {% else %}
+        {% stylesheets filter='cssrewrite'
+            'assets_front/css/steps.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="container mt50">
+
+        {{ include('@FrontCart/Cart/steps.html.twig', {'step1': 'done', 'step2': 'done', 'step3': 'inprocess', 'step4':null, 'step5': null, 'step6':null} ) }}
+
+        <div class="row mb20">
+            <div class="col-md-12">
+                <h2>Transporteur</h2>
+            </div>
+        </div>
+
+        <form id="form_transporter_add" class="form-horizontal" method="POST" action="{{ path('front_order_carrier') }}" onsubmit="return false;">
+            <div class="icheck-inline">
+                <div class="checkbox-icheck">
+                    <div class="row">
+
+
+                        {% for carrier in listCarrier %}
+
+
+                                    <div class="col-md-4 col-sm-6 transporteur">
+                                        <div class="thumbnail clickable" style="background: url({{ ipBblImageUrl(carrier.file) | image([200,200], 'inset') }}) 50% 50% / contain no-repeat; height: 208px ">
+                                            <div class="chktransporteur pull-right"><input type="radio" id="val_carrier" value="{{ carrier.id }}" name="val_carrier"><label for="chk-1"><span><div></div></span></label></div>
+                                            <div class="caption text-center"><h2>{{ carrier.name }}</h2>
+                                                <p style="color: black;font-weight: bold;">{{ carrier.detail }}</p>
+                                                <div class="price"><h3>
+
+                                                        {% if cart.total > carrier.freePort %}
+                                                            {{ '0' |price(2) }}
+                                                        {% else %}
+                                                            {{ carrier.price | price(2) }}
+                                                        {% endif %}
+
+                                                        {% if carrier.timeShipping > 0 %}
+                                                            <br> <p>Livraisons sous {{ carrier.timeShipping }} heures</p>
+                                                        {% endif %}
+                                                    </h3>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt50 mb20">
+                <div class="col-md-6">
+                    <a href="{{ path('front_order_index') }}" class="btn btn-default pull-left"><i class="fa fa-undo"></i> Retour</a>
+                </div>
+                <div class="col-md-6">
+                    {#<a href="javascript:;" id="btn-carrier" class="btn btn-default pull-right disabled  "><i class="fa fa-check"></i> Continuer</a>#}
+                    <a href="javascript:;" id="btn-carrier" class="btn btn-primary pull-right disabled  "><i class="fa fa-check"></i> Continuer</a>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {% if app.debug %}
+        <script src="{{ asset('assets_back/global/plugins/bootstrap-dialog/js/bootstrap-dialog.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets_back/global/plugins/icheck/icheck.js') }}" type="text/javascript"></script>
+
+
+        <script src="{{ asset('bundles/frontorder/js/carrier.js') }}" type="text/javascript"></script>
+    {% else %}
+        {% javascripts
+            'assets_back/global/plugins/bootstrap-dialog/js/bootstrap-dialog.js'
+
+            'assets_back/global/plugins/icheck/icheck.js'
+            '@FrontOrderBundle/Resources/public/js/carrier.js' %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}

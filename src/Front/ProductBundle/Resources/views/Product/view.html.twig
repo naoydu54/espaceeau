@@ -1,0 +1,186 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(product.productTranslations).name }}{% endblock %}
+{% block meta_description %}{{ translate(product.productTranslations).metaDesc }}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - {{ translate(product.productTranslations).name }}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+
+{% set productDocument = app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') %}
+{% if product.files | length > 0 %}
+    {% set productDocument = ipBblImageUrl(product.files.first.file) | image([400,400]) %}
+{% endif %}
+
+{% block ogimage %}{{ productDocument }}{% endblock %}
+{% block ogdescription %}{{ translate(product.productTranslations).metaDesc }}{% endblock %}
+
+{% block stylesheets %}
+    {% if app.debug %}
+        <link href="{{ asset('assets_front/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets_front/plugins/bootstrap-dialog/css/bootstrap-dialog.min.css') }}" rel="stylesheet">
+    {% else %}
+        {% stylesheets filter='cssrewrite'
+            'assets_front/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css'
+            'assets_front/plugins/bootstrap-dialog/css/bootstrap-dialog.min.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt100">
+
+
+        <div class="col-md-6 zoom" id="product-image">
+
+        </div>
+
+
+        <div class="col-md-6">
+            <h1>{{ translate(product.productTranslations).name }}</h1>
+            <p id="ref">{{ product.reference }}</p>
+
+            {% if product.sheetName is not null %}
+                <div class="sheet">
+                    <a href="{{ '/uploads/' ~ product.sheetName }}" class="btn btn-sm btn-warning" target="_blank">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    </a>
+                </div>
+            {% endif %}
+
+
+
+            {% if product.brand %}
+                {% if product.brand.file is not null %}
+                    <div class="mt10 mb10">
+                        <img src="{{ ipBblImageUrl(product.brand.file) | image([200,200], 'inset') }}" alt="{{ product.brand.file.name }}">
+
+                    </div>
+                {% else %}
+                    <div class="mt10 mb10">
+                        <p>Marque : {{ product.brand.name }}</p>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            <p>{{ translate(product.productTranslations).shortDescription }}</p>
+
+
+            {% if not provideBand %}
+
+                {% if product.priceMini > 0 and product.priceVisible %}
+                    {% if product.secondePriceForRecution >0 %}
+                        {#<h2 class="text-danger" id="product-price" data-baseprice="{{ product.priceTtc }}" >Prix {{ product.priceMini | price(2) }} </h2>#}
+
+                        <h2 data-baseprice="{{ product.secondePriceForRecution }}" class="text-danger">   Prix <del>{{ product.priceMini |price(2) }}</del> {{ product.secondePriceForRecution |price(2) }}</h2>
+                    {% else %}
+                            <h2 class="text-danger" id="product-price" data-baseprice="{{ product.priceTtc }}">Prix {{ product.priceMini | price(2) }}</h2>
+
+                    {% endif %}
+                {% endif %}
+                <p>
+                    Délai de livraison : 5 jours
+                </p>
+                <p class="text-danger">
+                    Les frais de port sont offerts pour toute commande supérieure à 80 €
+                </p>
+            {% endif %}
+            <form id="form_add_cart" class="form-horizontal" method="POST" onsubmit="return false;">
+                <div id="product-combination-container" data-id="{{ product.id }}"></div>
+                {% if not provideBand %}
+
+                    <div id="quantity-container"></div>
+
+                    <div id="noAvailableAttribut"></div>
+                    {% if product.available %}
+
+                       <div class="form-actions">
+                            <a href="javascript:;" class="btn btn-primary disabled" id="add-product-cart" data-id="{{ product.id }}" disabled="disabled"><i class="fa fa-cart-plus"></i> Ajouter au panier</a>
+                        </div>
+
+                        {% else %}
+                            <h3 id="noAvailable" style="color: red">Produit non disponible</h3>
+
+
+                            <div class="form-actions">
+                                {% if preventAvailableProduct %}
+                                    {% if app.user %}
+
+                                    {% endif %}
+                                    <a href="#" class="btn btn-primary disabled" disabled="disabled"> Vous serez informé de la disponibilité par mail </a>
+
+                                {% else %}
+
+
+                                        <a href="javascript:;" class="btn btn-primary" id="addAvailable" data-user="{{ app.user.id }}" data-id="{{ product.id }}"> M’avertir de la disponibilité </a>
+
+                                {% endif %}
+                            </div>
+                    {% endif %}
+
+                {% endif %}
+
+            </form>
+        </div>
+    </div>
+
+    {% if getProductFeatures(product) | length > 0 %}
+        <div class="row">
+            <div class="col-md-12 margin-top-15">
+                {% for key, features in getProductFeatures(product) %}
+                    <div class="col-md-6">
+                        <h2>{{ key }}</h2>
+                        <ul class="list-group">
+                            {% for feature in features %}
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-6">
+                                            {{ feature.icon | raw }}
+                                            {{ feature.element }}
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6">
+                                            <strong class="pull-right">
+                                                {{ feature.value }}
+                                            </strong>
+
+                                            {% if feature.color is not null %}
+                                                <div class="square pull-right mr10" style="background-color: {{ feature.color }}"></div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    {% endif %}
+
+    {% if translate(product.productTranslations).template %}
+        {{ include(template_from_string(translate(product.productTranslations).template)) }}
+        {#{{ translate(product.productTranslations).template |raw }}#}
+
+
+    {% endif %}
+
+{% endblock body %}
+
+{% block javascripts %}
+    {% if app.debug %}
+        <script src="{{ asset('assets_front/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+        <script src="{{ asset('assets_front/plugins/bootstrap-dialog/js/bootstrap-dialog.min.js') }}"></script>
+        <script src="{{ asset('bundles/frontproduct/js/productView.js') }}"></script>
+        <script src="{{ asset('bundles/frontproduct/js/zoom-master/jquery.zoom.js') }}"></script>
+    {% else %}
+        {% javascripts
+            'assets_front/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js'
+            'assets_front/plugins/bootstrap-dialog/js/bootstrap-dialog.min.js'
+            '@FrontProductBundle/Resources/public/js/productView.js'
+            '@FrontProductBundle/Resources/public/js/zoom-master/jquery.zoom.js' %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}
+{% endblock %}

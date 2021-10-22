@@ -1,0 +1,95 @@
+admin_admin:
+    resource: "@AdminAdminBundle/Resources/config/admin_routing.yml"
+    prefix:   /
+
+admin_fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix:   /user/group
+
+admin_customer:
+    resource: "@AdminCustomerBundle/Resources/config/customer_routing.yml"
+    prefix:   /customer
+
+admin_slider:
+    resource: "@AdminSliderBundle/Resources/config/slider_routing.yml"
+    prefix:   /slider
+
+admin_setting:
+    resource: "@AdminSettingBundle/Resources/config/setting_routing.yml"
+    prefix:   /setting
+
+admin_page:
+    resource: "@AdminPageBundle/Resources/config/page_routing.yml"
+    prefix:   /page
+
+admin_menu:
+    resource: "@AdminMenuBundle/Resources/config/menu_routing.yml"
+    prefix:   /menu
+
+admin_actuality:
+    resource: "@AdminActualityBundle/Resources/config/actuality_routing.yml"
+    prefix:   /actuality
+
+admin_product:
+    resource: "@AdminProductBundle/Resources/config/product_routing.yml"
+    prefix:   /product
+
+admin_product_brand:
+    resource: "@AdminProductBundle/Resources/config/brand_routing.yml"
+    prefix:   /brand
+
+admin_product_feature:
+    resource: "@AdminProductBundle/Resources/config/feature_routing.yml"
+    prefix:   /feature
+
+admin_attribut:
+    resource: "@AdminProductBundle/Resources/config/attribut_routing.yml"
+    prefix:   /attribut
+
+admin_attribut_product:
+    resource: "@AdminProductBundle/Resources/config/attribut_product_routing.yml"
+    prefix:   /attribut-product
+
+admin_contact:
+    resource: "@AdminContactBundle/Resources/config/routing.yml"
+    prefix:   /contact
+
+admin_gallery:
+    resource: "@AdminGalleryBundle/Resources/config/gallery_routing.yml"
+    prefix:   /gallery
+
+admin_restaurant:
+    resource: "@AdminRestaurantBundle/Resources/config/restaurant_routing.yml"
+    prefix:   /restaurant
+
+admin_order:
+    resource: "@AdminOrderBundle/Resources/config/order_routing.yml"
+    prefix:   /order
+
+admin_finder:
+    resource: "@AdminFinderBundle/Resources/config/finder_routing.yml"
+    prefix:   /finder
+
+admin_calendar:
+    resource: "@AdminCalendarBundle/Resources/config/calendar_routing.yml"
+    prefix:   /calendar
+
+admin_carrier:
+    resource: "@AdminCarrierBundle/Resources/config/carrier_routing.yml"
+    prefix:   /carrier
+
+admin_promotion:
+    resource: "@AdminPromotionBundle/Resources/config/promotion_routing.yml"
+    prefix:   /promotion
+
+admin_fos_user_security_login:
+    path: /user/login
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+admin_fos_user_security_check:
+    path: /user/login_check
+    defaults: { _controller: FOSUserBundle:Security:check }
+
+admin_fos_user_security_logout:
+    path: /user/logout
+    defaults: { _controller: FOSUserBundle:Security:logout }

@@ -1,0 +1,23 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: wismer
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: ssl0.ovh.net
+    mailer_user: dev@info-plus.fr
+    mailer_password: 'c2jAvJ:T2$@4'
+    secret: d98e771b33337dbe718a1355a24a0e28139d16dd
+    entreprise_mail: aurelien@info-plus.fr
+    ip_name: 'Info Plus'
+    ip_mail: aurelien@info-plus.fr
+    ip_site: http://www.info-plus.fr
+    locale: fr
+    locales:
+        - fr
+    locales_routing: fr
+    public_key: 6Lc7_hcUAAAAAOh9Xa73v79DSFxzbBrQdwd7ejyk
+    private_key: 6Lc7_hcUAAAAAA3_k3gZH_uRIlMs0nUMouWpXvBU
+    dev: true

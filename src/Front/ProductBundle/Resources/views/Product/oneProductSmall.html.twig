@@ -1,0 +1,34 @@
+<div class="row mb10 menu-product">
+    <div class="col-md-12">
+        <a href="{{ path('front_site_product_view', {'product': product.id, 'slug': translate(product.productTranslations).slug}) }}" title="{{ translate(product.productTranslations).name }}">
+            {% if product.files|length > 0 %}
+                <img src="{{ ipBblImageUrl(product.files.first.file) | image([600,600], 'outbound') }}" class="img-responsive m0auto" alt="{{ product.files.first.file.name }}">
+                {#<img src="{{ ipBblImageUrl(product.files.first.file) | imagine_filter('image_brand_product') }}" class="img-responsive m0auto" alt="{{ product.files.first.file.name }}">#}
+            {% else %}
+                <img src="{{ '/assets_front/img/no-image.jpg' | image([600,600], 'outbound') }}" alt="Aucune image" class="img-responsive m0auto">
+            {% endif %}
+        </a>
+    </div>
+
+    <div class="col-md-12 mt5 text-center">
+        <h4>{{ translate(product.productTranslations).name }}</h4>
+        <p>{{ translate(product.productTranslations).shortDescription }}</p>
+        {% if product.priceVisible %}
+            <p>{{ product.priceTtc | price(2) }}</p>
+
+        {% endif %}
+        <p class="mt20">
+            <a href="{{ path('front_site_product_view', {'product': product.id, 'slug': translate(product.productTranslations).slug}) }}" title="{{ translate(product.productTranslations).name }}" class="btn btn-primary">
+                <i class="fa fa-angle-right"></i>
+
+                {% if app.request.attributes.get("_route") == 'front_site_brand_view' %}
+                    Voir plus
+                {% else %}
+                    Acheter
+                {% endif %}
+
+            </a>
+        </p>
+
+    </div>
+</div>

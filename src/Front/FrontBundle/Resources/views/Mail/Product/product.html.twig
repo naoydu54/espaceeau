@@ -1,0 +1,61 @@
+{% extends '@FrontFront/Mail/layout.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block sub_title %}
+    Bonjour, {{ user.civility }} {{ user.firstname }} {{ user.lastname }}
+{% endblock %}
+
+{% block body %}
+    <tr>
+        <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: left;background: #ffffff;">
+                <tr>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                            <tr>
+                                <td class="img-box3" style="vertical-align: top;">
+                                    <table class="para-table" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                        <tr>
+                                            <td height="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Votre produit {{ translate(product.productTranslations).name }} est disponible {% if attribut is not null %}en {{ attribut }}{% endif %}
+
+                                            </td>
+                                            <td>
+                                                <img src="{{ ipBblImageUrl(image.file) | image([200,200], 'inset') }}" >
+
+
+
+                                            </td>
+
+                                            <tr>
+                                            <td>
+                                                <a href="{{ path('front_site_product_view', {'product': product.id, 'slug': translation.slug}) }}" class="btn btn-primary" id="add-product-cart" data-id="113">Commander</a>
+                                            </td>
+                                        </tr>
+                                        </tr>
+                                        <tr>
+                                            <td height="10"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+
+
+
+
+{% endblock %}

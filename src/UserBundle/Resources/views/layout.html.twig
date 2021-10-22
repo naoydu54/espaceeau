@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="fr" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]>
+<html lang="fr" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="fr">
+<!--[endif]-->
+
+{# BEGIN HEAD #}
+<head>
+    <meta charset="utf-8"/>
+    <title>{{ 'Administration'|trans }} - {{ 'Login'|trans }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="Administration - Login" name="description"/>
+    <meta content="" name="author"/>
+    {# Favicon #}
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets_global/favicon/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets_global/favicon/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets_global/favicon/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets_global/favicon/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets_global/favicon/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets_global/favicon/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets_global/favicon/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets_global/favicon/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets_global/favicon/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets_global/favicon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets_global/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets_global/favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets_global/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets_global/favicon/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('assets_global/favicon/ms-icon-144x144.png') }}">
+    <meta name="theme-color" content="#ffffff">
+    {# BEGIN GLOBAL MANDATORY STYLES #}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets_back/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    {# END GLOBAL MANDATORY STYLES #}
+    {# BEGIN THEME GLOBAL STYLES #}
+    <link href="{{ asset('assets_back/global/css/components.min.css') }}" rel="stylesheet" id="style_components" type="text/css"/>
+    {# END THEME GLOBAL STYLES #}
+    {# BEGIN PAGE LEVEL STYLES #}
+    <link href="{{ asset('assets_back/pages/css/login.min.css') }}" rel="stylesheet" type="text/css"/>
+    {# END PAGE LEVEL STYLES #}
+</head>
+{# END HEAD #}
+
+<body class="login">
+{# BEGIN LOGO #}
+<div class="logo">
+    <img src="{{ '/assets_back/custom/img/logo.png' | image([200,73]) }}" alt="{{ getSettingByName('COMPANY_NAME') }}">
+</div>
+{# END LOGO #}
+{# BEGIN LOGIN #}
+<div class="content">
+    {# BEGIN LOGIN FORM #}
+    {% block fos_user_content %}{% endblock fos_user_content %}
+    {# END LOGIN FORM #}
+</div>
+<div class="copyright">{{ "now"|date('Y') }} &copy; Info Plus.</div>
+<!--[if lt IE 9]>
+<script src="{{ asset('assets_back/global/plugins/respond.min.js') }}"></script>
+<script src="{{ asset('assets_back/global/plugins/excanvas.min.js') }}"></script>
+<script src="{{ asset('assets_back/global/plugins/ie8.fix.min.js') }}"></script>
+<![endif]-->
+</body>
+
+</html>

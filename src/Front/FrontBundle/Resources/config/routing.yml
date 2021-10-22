@@ -1,0 +1,36 @@
+front_front_home_index:
+    path:     /{page}
+    defaults: { _controller: FrontFrontBundle:Front:index, page: null }
+    requirements:
+        page: \d+
+
+front_front_page_index:
+    path:     /page/{page}/{slug}
+    defaults: { _controller: FrontFrontBundle:Front:pageIndex }
+    requirements:
+        page: \d+
+
+front_flip_book:
+    path: /catalogue
+    defaults: {_controller: FrontFrontBundle:Front:flipBook}
+
+front_footer:
+    path: /footer
+    defaults: {_controller: FrontFrontBundle:Front:footer}
+
+
+front_search:
+    path: /search
+    defaults: {_controller: FrontFrontBundle:Front:search}
+
+front_search_result:
+    path: /search/{name}
+    defaults: {_controller: FrontFrontBundle:Front:resultSearch}
+
+front_login_fail:
+    path: /fail/{name}/{password}
+    defaults: {_controller: FrontFrontBundle:Front:failLogin}
+
+front_sitemap:
+    path: /sitemap.xml
+    defaults: {_controller: FrontFrontBundle:Front:sitemap, _defaults: xml}

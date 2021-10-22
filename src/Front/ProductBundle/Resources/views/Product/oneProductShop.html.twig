@@ -1,0 +1,51 @@
+<div class="row mb10 menu-product">
+
+    <div class="col-md-12">
+
+            <a  href="{{ path('front_site_product_view', {'product': product.id, 'slug': translate(product.productTranslations).slug}) }}" title="{{ translate(product.productTranslations).name }}">
+
+                {% if product.files|length > 0 %}
+
+                    <img src="{{ ipBblImageUrl(product.files.first.file) | image([600,600], 'outbound') }}" class="img-responsive m0auto" alt="{{ product.files.first.file.name }}">
+
+                {% else %}
+                    <img src="{{ '/assets_front/img/no-image.jpg' | image([600,600], 'outbound') }}" alt="Aucune image" class="img-responsive m0auto">
+                {% endif %}
+
+
+            </a>
+
+
+    </div>
+
+    <div class="col-md-12 mt5 text-center">
+        <h4>{{ translate(product.productTranslations).name }}</h4>
+        <p>{{ translate(product.productTranslations).shortDescription }}</p>
+
+        <p class="mt20">
+            <!--  slide up  -->
+        <div class="overlay">
+            <div class="text2">
+                {% if product.priceVisible %}
+                {% if product.secondePriceForRecution > 0 %}
+        <p><span> <del> {{ product.priceTtc | price(2) }} </del></span> &nbsp; <b>{{ product.secondePriceForRecution | price(2) }}</b></p>
+        {% else %}
+            <p>{{ product.priceTtc | price(2) }}</p>
+
+        {% endif %}
+
+
+        {% endif %}
+                <a href="{{ path('front_site_product_view', {'product': product.id, 'slug': translate(product.productTranslations).slug}) }}" title="{{ translate(product.productTranslations).name }}" class="btn btn-primary">
+                    <i class="fa fa-angle-right"></i> Commander
+                </a></div>
+        </div>
+
+        </p>
+    </div>
+
+
+
+</div>
+
+

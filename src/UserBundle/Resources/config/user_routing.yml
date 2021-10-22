@@ -1,0 +1,25 @@
+# profile
+front_fos_user_profile:
+    resource: "@UserBundle/Resources/config/fos_user_profile_routing.yml"
+    prefix:   /
+
+# security
+front_fos_user_secutity:
+    resource: "@UserBundle/Resources/config/fos_user_security_routing.yml"
+    prefix:   /
+
+# change-password
+fos_user_change_password:
+    path: /change-password
+    defaults: { _controller: FOSUserBundle:ChangePassword:changePassword }
+
+# registration
+fos_user_registration:
+    resource: "@UserBundle/Resources/config/fos_user_registration_routing.yml"
+    prefix:   /register
+
+# resetting
+fos_user_resetting:
+    resource: "@UserBundle/Resources/config/fos_user_resetting_routing.yml"
+    prefix:   /resetting
+

@@ -1,0 +1,259 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{{ getSettingByName('COMPANY_NAME') }} - Resume{% endblock %}
+{% block meta_description %}{% endblock %}
+
+{% block ogtitle %}{{ getSettingByName('COMPANY_NAME') }} - Resume{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{% endblock %}
+
+{% block stylesheets %}
+    {% if app.debug %}
+        <link rel="stylesheet" href="{{ asset('assets_front/css/steps.css') }}" type="text/css">
+    {% else %}
+        {% stylesheets filter='cssrewrite'
+            'assets_front/css/steps.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="container mt50">
+
+        {{ include('@FrontCart/Cart/steps.html.twig', {'step1': 'done', 'step2': 'done', 'step3': 'done', 'step4':'done', 'step5': 'done', step6:'inprocess'} ) }}
+
+        <div class="row mb20">
+            <div class="col-md-12">
+                <h1>€ payer</h1>
+            </div>
+
+            <div class="col-md-4">
+                <label class="checkbox-inline labelCgv2"><input type="checkbox" name="cgv1" id="checkbox_cgv1" value="cgv1">Accepter les CGV (Conditions Générales de Vente) <a data-toggle="modal" data-target="#myModal"><b>Lire</b></a>
+                </label>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog" id="modalMention">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Mentions Légales</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modalText">
+                                    {{ mentionLegal.template |raw }}
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12"><h1 class="main-title"><i class="fa fa-cart-arrow-down"></i> Mon Panier</h1>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-panier">
+                                <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Nom</th>
+                                    <th>Ref</th>
+                                    <th>Quantité</th>
+                                    <th>Prix Unitaire</th>
+                                    <th>Total TTC</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for  key,  cartElement in cart.cartElements %}
+                                    <tr>
+
+                                        <td>
+                                            {% if cartElement.product.files | length > 0 %}
+                                                <img src="{{ ipBblImageUrl(cartElement.product.files.first.file) | image([80,80]) }}" alt="{{ cartElement.product.files.first.file.name }}" class="img-responsive">
+                                            {% else %}
+                                                <img src="{{ '/assets_front/img/no-image.jpg' | image([100,100]) }}" alt="Aucune image" class="img-responsive">
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ translate(cartElement.product.productTranslations).name }}</td>
+                                        <td>{{ cartElement.product.reference }}</td>
+                                        <td>{{ cartElement.quantity }}</td>
+                                        <td>{{ cartElement.getUnitPriceWithAttirbut | price(2) }}</td>
+                                        <td>{{ cartElement.getTotalCartElement() | price(2) }}</td>
+
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    {% if cart.promotion %}
+                                        <td>
+                                            {% if cart.promotion.product.files | length > 0 %}
+                                                <img src="{{ ipBblImageUrl(cart.promotion.product.files.first.file) | image([80,80]) }}" alt="{{ cart.promotion.product.files.first.file.name }}" class="img-responsive">
+                                            {% else %}
+                                                <img src="{{ '/assets_front/img/no-image.jpg' | image([100,100]) }}" alt="Aucune image" class="img-responsive">
+                                            {% endif %}
+
+                                        </td>
+                                        <td><p style="color: red;"><b>Produit Offert : {{ translate(cart.promotion.product.productTranslations).name }} </b></p></td>
+                                    {% endif %}
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-7">
+                        <div class="table-responsive">
+                            <table class="table table-tarif">
+                                <tbody>
+                                <tr>
+                                    <td class="text-right">Total des articles (hors frais de port)</td>
+                                    <td id="total-article">{{ cart.getTotalCartElements() | price (2) }}</td>
+                                </tr>
+                                <tr class="hidden">
+                                    <td class="text-right">Code promotion</td>
+                                    <td id="code-added-cmd"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Livraison</td>
+                                    <td id="fdport" data-prix="0">
+                                        {{ cart.order.shippingPrice | price(2) }}
+
+                                        <br><span class="text-muted">(Transporteur : {{ cart.order.transporter }})</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">TVA</td>
+                                    <td>{{ cart.totalTva() |price(2) }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"><h3>Total</h3></td>
+                                    <td><h3>{{ cart.total |price(2) }} TTC</h3></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="checkbox-inline labelCgv2"><input type="checkbox" name="cgv2" id="checkbox_cgv2" value="cgv2">Accepter les CGV (Conditions Générales de Vente) <a data-toggle="modal" data-target="#myModal"><b>Lire</b></a></label>
+
+                    </div>
+
+
+                </div>
+
+                <div class="row mt50 mb20">
+                    <div class="col-md-6">
+                        <a href="{{ path('front_order_carrier') }}" class="btn btn-default pull-left"><i class="fa fa-undo"></i> Retour</a>
+                    </div>
+                    <div class="col-md-6">
+                        {% if paymentType =='cb' %}
+
+                        <div class=" paymentCard">
+                            <form method="POST" action="https://paiement.systempay.fr/vads-payment/">
+                                <input type="hidden" name="vads_action_mode" value="INTERACTIVE"/>
+                                <input type="hidden" name="vads_amount" value="{{ totalAmount }}"/>
+                                <input type="hidden" name="vads_ctx_mode" value="{{ vads_ctx_mode }}"/>
+                                <input type="hidden" name="vads_currency" value="978"/>
+                                <input type="hidden" name="vads_page_action" value="PAYMENT"/>
+                                <input type="hidden" name="vads_site_id" value="42302833"/>
+                                <input type="hidden" name="vads_trans_date" value="{{ date }}"/>
+                                <input type="hidden" name="vads_trans_id" value="{{ trans_id }}"/>
+                                <input type="hidden" name="vads_version" value="V2"/>
+
+                                <input type="hidden" name="signature" value="{{ signature }}"/>
+                                <input type="hidden" name="vads_url_refused" value="{{ vads_url_refused }}"/>
+                                <input type="hidden" name="vads_url_cancel" value="{{ vads_url_cancel }}"/>
+                                <input type="hidden" name="vads_url_error" value="{{ vads_url_error }}"/>
+                                <input type="hidden" name="vads_redirect_error_message" value="{{ vads_redirect_error_message }}"/>
+                                <input type="hidden" name="vads_redirect_error_timeout" value="{{ vads_redirect_error_timeout }}"/>
+                                <input type="hidden" name="vads_return_mode" value="{{ vads_return_mode }}"/>
+                                <input type="hidden" name="vads_url_success" value="{{ vads_url_success }}"/>
+                                    <input type="hidden" name="vads_payment_config" value="{{ vads_payment_config }}"/>
+                                <input type="hidden" name="vads_redirect_success_message" value="{{ vads_redirect_success_message }}"/>
+                                <input type="hidden" name="vads_redirect_success_timeout" value="{{ vads_redirect_success_timeout }}"/>
+                                <input type="hidden" name="vads_capture_delay" value="{{ vads_capture_delay }}"/>
+                                <input type="hidden" name="vads_validation_mode" value="{{ vads_validation_mode }}"/>
+                                {% if configPayment == 'MULTI' %}
+                                    <input type="hidden" name="vads_cust_title" value="{{ vads_cust_title }}">
+
+                                    <input type="hidden" name="vads_order_id" value="{{ vads_order_id }}" />
+                                    <input type="hidden" name="vads_payment_cards" value="{{ vads_payment_cards }}">
+                                    <input type="hidden" name="vads_cust_last_name" value="{{ vads_cust_last_name }}">
+                                    <input type="hidden" name="vads_cust_first_name" value="{{ vads_cust_first_name }}">
+                                    <input type="hidden" name="vads_cust_address" value="{{ vads_cust_address }}">
+                                    <input type="hidden" name="vads_cust_zip" value="{{ vads_cust_zip }}">
+
+                                    <input type="hidden" name="vads_cust_city" value="{{ vads_cust_city }}">
+                                    <input type="hidden" name="vads_cust_email" value="{{ vads_cust_email }}">
+                                    <input type="hidden" name="vads_cust_cell_phone" value="{{ vads_cust_cell_phone }}">
+                                    <input type="hidden" name="vads_cust_id" value="{{ vads_cust_id }}">
+
+                                {% endif %}
+
+                                {% endif %}
+
+                                {% if paymentType =='cb' %}
+                                    <button type="submit" name="payer" class="btn btn-default pull-right " value="Payer"><i class="fa fa-check"></i> Payer</button>
+
+                                {% endif %}
+                            </form>
+
+                        </div>
+
+                        {% if paymentType == 'cheque' or paymentType == 'virement' %}
+
+                            <a href="{{ path('front_order_confirmation') }}" id="btn-confiramtion" class="btn btn-default pull-right  "><i class="fa fa-check"></i> Continuer</a>
+
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script>
+        var CHEQUE = {{ constant('Admin\\OrderBundle\\Entity\\Payment::CHEQUE') }};
+        var CARTEBLEUE = {{ constant('Admin\\OrderBundle\\Entity\\Payment::CARTEBLEUE') }};
+    </script>
+    {% if app.debug %}
+        <script src="{{ asset('assets_back/global/plugins/bootstrap-dialog/js/bootstrap-dialog.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('bundles/frontorder/js/resume.js') }}" type="text/javascript"></script>
+    {% else %}
+        {% javascripts
+            'assets_back/global/plugins/bootstrap-dialog/js/bootstrap-dialog.js'
+            '@FrontOrderBundle/Resources/public/js/resume.js' %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+    {% endif %}
+
+
+{% endblock %}

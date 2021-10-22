@@ -1,0 +1,9 @@
+#front_site_brand_index:
+#    path:     /
+#    defaults: { _controller: FrontBrandBundle:Brand:index }
+
+front_site_brand_view:
+    path:     /{brand}/{slug}
+    defaults: { _controller: FrontBrandBundle:Brand:view }
+    requirements:
+        brand: \d+

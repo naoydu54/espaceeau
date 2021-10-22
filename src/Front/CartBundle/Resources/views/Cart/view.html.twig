@@ -1,0 +1,235 @@
+<div class="container">
+
+    <div id="cart">
+        {% if cart.cartElements | length > 0 %}
+            <div class="row">
+                <div class="col-md-8">
+                    <ul id="cart-elements-container">
+                        {% for key, cartElement in cart.cartElements %}
+                            {% set isEvent = false %}
+
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        {% if cartElement.product.files | length > 0 %}
+                                            <img src="{{ ipBblImageUrl(cartElement.product.files.first.file) | image([125,125]) }}" alt="{{ cartElement.product.files.first.file.name }}" class="img-responsive">
+                                        {% else %}
+                                            <img src="{{ '/assets_front/img/no-image.jpg' | image([125,125]) }}" alt="Aucune image" class="img-responsive">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div>
+                                            <p>{{ translate(cartElement.product.productTranslations).name }}</p>
+
+                                            {% if cartElement.attributProducts | length > 0 %}
+                                                <p>
+                                                    {% for attributProduct in cartElement.attributProducts %}
+                                                        {{ translate(attributProduct.attributValue.attribut.attributTranslations).name }} :
+                                                        {{ translate(attributProduct.attributValue.attributValueTranslations).name }}
+
+                                                    {% endfor %}
+                                                </p>
+                                            {% elseif cartElement.cartElementEvent is not null %}
+                                                {% set isEvent = true %}
+
+                                                {{ translate(cartElement.cartElementEvent.event.eventTranslations).name }}
+
+                                                <p>
+                                                    {% if cartElement.cartElementEvent.event.dateStart is not null %}
+                                                        du {{ cartElement.cartElementEvent.event.dateStart | date('d/m/Y') }}
+                                                        {% if cartElement.cartElementEvent.event.timeStart is not null %}
+                                                            à {{ cartElement.cartElementEvent.event.timeStart | date('H:i') }}
+                                                        {% endif %}
+                                                    {% endif %}
+
+                                                    {% if cartElement.cartElementEvent.event.dateEnd is not null %}
+                                                        <br>
+                                                        au {{ cartElement.cartElementEvent.event.dateEnd | date('d/m/Y') }}
+                                                        {% if cartElement.cartElementEvent.event.timeEnd is not null %}
+                                                            à {{ cartElement.cartElementEvent.event.timeEnd | date('H:i') }}
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </p>
+
+                                                <p>
+                                                    {{ cartElement.cartElementEvent.civility }} {{ cartElement.cartElementEvent.firstname }} {{ cartElement.cartElementEvent.lastname }}
+                                                </p>
+
+                                                {% if cartElement.cartElementEvent.attributProducts | length > 0 %}
+                                                    <p>
+                                                        {% for attributProduct in cartElement.cartElementEvent.attributProducts %}
+                                                            {{ translate(attributProduct.attributValue.attribut.attributTranslations).name }}:
+                                                            {{ translate(attributProduct.attributValue.attributValueTranslations).name }}
+                                                        {% endfor %}
+                                                    </p>
+                                                {% endif %}
+                                            {% endif %}
+                                        </div>
+                                        <div>
+
+                                            {{ cartElement.unitPriceWithAttirbut | price(2) }}
+                                            {#{% if cartElement.product. %}#}
+                                                {##}
+                                            {#{% endif %}#}
+                                            {#{{ dump(cartElement.product) }}#}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        {% if isEditable and isEvent == false %}
+                                            <input class="form-control touchspin" type="text" value="{{ cartElement.quantity }}" id="val_cart_element_qte_{{ key }}" name="val_cart_element_qte_{{ key }}" data-id="{{ key }}"/>
+                                        {% else %}
+                                            <span>{{ cartElement.quantity }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="cart-element-price" data-elementpriceunitht="{{ cartElement.unitPriceWithAttirbut('HT') }}" data-elementpriceunit="{{ cartElement.unitPriceWithAttirbut }}" data-elementtva="{{ cartElement.cartElementPriceTvaWithAttribut }}">
+                                            {{ cartElement.unitPriceWithAttirbut('HT') | price(2) }}
+                                        </div>
+                                    </div>
+                                    {% if isEditable %}
+                                        <div class="col-md-2">
+                                            <a href="javascript:;" class="btn btn-xs btn-danger delete-cart-element" data-id="{{ key }}"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-md-2"></div>
+                                    {% endif %}
+                                </div>
+                                {% if cartElement.promotion is not null %}
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img src="{{ '/assets_front/img/no-image.jpg' | image([125,125]) }}" alt="Aucune image" class="img-responsive">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <p>
+                                                code promotion <strong>{{ cartElement.promotion.code }}</strong>
+                                            </p>
+                                            <p>
+                                                {{ cartElement.promotion.name }} (<strong>{{ (cartElement.promotion.promotionType.id == constant('Admin\\PromotionBundle\\Entity\\PromotionType::PERCENT') ? cartElement.promotion.value ~ '%' : cartElement.promotion.value | price(2)) }}</strong> de remise à partir de <strong>{{ cartElement.promotion.minimumAmount | price(2) }}</strong> d'achat)
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="text-danger">
+                                                <strong>- {{ cartElement.promotionPrice | price(2) }}</strong>
+                                            </div>
+                                        </div>
+                                        {% if isEditable %}
+                                            <div class="col-md-2">
+                                                <a href="javascript:;" class="btn btn-xs btn-danger delete-promotion" data-id="{{ key }}" data-type="cartElement"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                        {% else %}
+                                            <div class="col-md-2"></div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="cart-info">
+                        <li>
+                            <span id="cart-nb-elements">{{ cart.nbCartElements }}</span> article(s)
+                            <span id="cart-total-elements" data-price="{{ cart.totalCartElements('HT') }} " class="pull-right test">{{ cart.totalCartElements('HT') | price(2) }} / HT</span>
+                        </li>
+                        {% if cart.promotionPrice > 0 %}
+                            <li>
+                                <span>Total des promotions</span>
+                                <span class="text-danger pull-right">- {{ cart.promotionPrice | price(2) }}</span>
+                            </li>
+                        {% endif %}
+
+
+                        <li>
+                            <span>Livraison* à partir de</span>
+                            <span id="cart-total-shipping" data-shipping="{{ getCarrierCart() }}" class="pull-right">{{ getCarrierCart()| price(2) }}</span>
+                        </li>
+
+                        <li>
+                            <span>Tva</span>
+                            <span id="cart-total-tva" data-tva="{{ cart.totalTva }}" class="pull-right">{{ cart.totalTva | price(2) }} </span>
+                        </li>
+
+
+                        <li>
+                            <div class="separator"></div>
+                        </li>
+                        <li>
+                            <span>Total TTC</span>
+                            <span id="cart-total" data-total="{{ cart.total }}" class="pull-right">{{ cart.total | price(2) }}</span>
+                            {#{{ dump(cart.total) }}#}
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {% if cart.promotion is not null %}
+                <div class="row mt20">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{{ '/assets_front/img/no-image.jpg' | image([125,125]) }}" alt="Aucune image" class="img-responsive">
+                            </div>
+                            <div class="col-md-5">
+                                <p>
+                                    code promotion <strong>{{ cart.promotion.code }}</strong>
+                                </p>
+                                <p>
+                                    {{ cart.promotion.name }} (<strong>{{ (cart.promotion.promotionType.id == constant('Admin\\PromotionBundle\\Entity\\PromotionType::PERCENT') ? cart.promotion.value ~ '%' : cart.promotion.value | price(2)) }}</strong> de remise à partir de <strong>{{ cart.promotion.minimumAmount | price(2) }}</strong> d'achat)
+                                </p>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="text-danger">
+                                    <strong>- {{ cart.promotionPrice | price(2) }}</strong>
+                                </div>
+                            </div>
+                            {% if isEditable %}
+                                <div class="col-md-2">
+                                    <a href="javascript:;" class="btn btn-xs btn-danger delete-promotion" data-id="{{ cart.id }}" data-type="cart"><i class="fa fa-trash"></i></a>
+                                </div>
+                            {% else %}
+                                <div class="col-md-2"></div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="row mt20 mb20">
+                <div class="col-md-6">
+                    <p>Si vous disposez d'un code promotion entrez le ici</p>
+
+                    <form class="form-inline" onsubmit="return false;">
+                        <div class="form-group">
+                            <label class="sr-only" for="val_promotion_code">Code promotion</label>
+                            <input type="text" class="form-control" id="val_promotion_code" placeholder="Code promotion">
+                        </div>
+                        <button type="submit" class="btn btn-default btn-add-promotion-code"><i class="fa fa-check"></i> Valider</button>
+                    </form>
+                    <p id="promotion-code-message"></p>
+                </div>
+
+
+                {% if isEditable %}
+                    <div class="col-md-6">
+                        <a href="{{ path('front_order_index') }}" target="_self" rel="noopener" class="btn btn-primary pull-right">Commander</a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h6 class="text-muted">
+                        * Les frais de port sont donnés à titre indicatif, il seront calculés après confirmation de l'adresse de livraison.<br>
+                        <span id="span-free-fdp"></span>
+                    </h6>
+                </div>
+            </div>
+
+        {% else %}
+            <div class="col-md-12">
+                <p>Il n'y a aucun article dans votre panier</p>
+            </div>
+        {% endif %}
+    </div>
+</div>

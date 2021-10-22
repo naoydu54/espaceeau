@@ -1,0 +1,54 @@
+{% extends '@FrontFront/layout.html.twig' %}
+
+{% block title %}{% endblock %}
+{% block meta_description %}{% endblock %}
+
+{% block ogtitle %}{% endblock %}
+{% block ogtype %}website{% endblock %}
+{% block ogurl %}{{ app.request.uri }}{% endblock %}
+{% block ogimage %}{{ app.request.schemeAndHttpHost() ~ asset('assets_global/img/logo.png') }}{% endblock %}
+{% block ogdescription %}{% endblock %}
+
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="container mt50" id="product-container">
+
+        {% if products %}
+            {% for product in products | batch(4) %}
+                <div class="row">
+
+                    {% for p in product %}
+                        <div class="col-md-3">
+                            {% include "FrontProductBundle:Product:oneProductShop.html.twig" with {'product': p} %}
+
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <h2 class="text-center">
+                {% if exeptionTrancheuse %}
+                    <h2><a href="https://www.trancheuses-wismer.fr/"> Accèdez au site Trancheuse Wismer</a></h2>
+
+                {% else %}
+                    Aucun Résultat pour "{{ name }}"
+
+                {% endif %}
+            </h2>
+        {% endif %}
+
+    </div>
+
+
+{% endblock body %}
+
+{% block javascripts %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+front_cart_index:
+    path:     /
+    defaults: { _controller: FrontCartBundle:Cart:index }
+
+front_cart_product_add:
+    path:     /product-add/{product}
+    defaults: { _controller: FrontCartBundle:Cart:productAdd }
+    requirements:
+        product: \d+
+
+front_cart_element_quantity_update:
+    path:     /element/quantity-update
+    defaults: { _controller: FrontCartBundle:Cart:elementUpdateQuantity }
+
+front_cart_element_delete:
+    path:     /element/delete
+    defaults: { _controller: FrontCartBundle:Cart:elementDelete }
+
+front_cart_promotion_code_add:
+    path:     /promotion-code/add
+    defaults: { _controller: FrontCartBundle:Cart:promotionCodeAdd }
+
+front_cart_promotion_code_delete:
+    path:     /promotion-code/delete
+    defaults: { _controller: FrontCartBundle:Cart:promotionCodeDelete }

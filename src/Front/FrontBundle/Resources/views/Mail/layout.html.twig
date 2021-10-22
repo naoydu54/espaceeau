@@ -1,0 +1,438 @@
+{% set mainColor = '#333' %}
+{% set logoWidth = 120 %}
+{% set logoHeight = 44 %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Confirmation de vote commande</title>
+    <style type="text/css">
+        /* EMBEDDED CSS */
+        /* Forces Hotmail to display normal line spacing. */
+        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+            line-height: 100%;
+        }
+
+        body {
+            -webkit-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+        }
+
+        body, img, div, p, ul, li, span, strong, a {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Resolves webkit padding issue. */
+        table {
+            border-spacing: 0;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        /****** END BUG FIXES ********/
+        /****** END RESETTING DEFAULTS ********/
+        body, #body_style {
+            width: 100% !important;
+            /*min-height: 1000px;*/
+            color: #000;
+            font-family: 'Exo', sans-serif, Arial, Helvetica;
+            font-size: 13px;
+            line-height: 1;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+            outline: none;
+        }
+
+        a:link {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none !important;
+        }
+
+        a[href^="tel"], a[href^="sms"] {
+            text-decoration: none;
+            color: #000;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+            text-decoration: default;
+            color: #000 !important;
+            pointer-events: auto;
+            cursor: default;
+        }
+
+        img {
+            border: none;
+            outline: none;
+            text-decoration: none;
+            height: auto;
+            max-width: 100%;
+        }
+
+        a {
+            border: none !important;
+            outline: none !important;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        tr, td {
+            margin: 0;
+            padding: 0;
+        }
+
+        @media only screen and (max-width: 599px) {
+            table[class="ExternalClass"] {
+                width: 100% !important;
+            }
+
+            td[class="map-content"], table[class="map-content"] {
+                display: block !important;
+                width: 100% !important;
+
+            }
+
+            table[class="map-back"] {
+                width: 100% !important;
+                margin-bottom: 25px;
+            }
+
+            table[class="mob1"] {
+                width: 100% !important;
+            }
+
+            table[class="mob2"] {
+                width: 100% !important;
+                text-align: center;
+            }
+
+            table[class="button-more"] {
+                margin: 0 auto;
+            }
+
+            table[class="back2"] {
+                background-size: 100% 100% !important;
+            }
+
+            td[class="logo-480"] {
+                width: 20% !important;
+            }
+
+            td[class="img-box"], td[class="img-box1"], td[class="img-box2"] {
+                display: block !important;
+                width: 100% !important;
+
+            }
+
+            table[class="img-table"] {
+                text-align: center !important;
+            }
+
+            table[class="img-button"] {
+                margin: 0 auto;
+            }
+
+            table[class="para-table"] {
+                text-align: center !important;
+            }
+
+        }
+
+        @media only screen and (max-width: 499px) {
+            td[class="feture-left"] {
+                display: block !important;
+                width: 100% !important;
+            }
+
+            td[class="td-height"] {
+                height: 10px !important;
+                display: block !important;
+                width: 100% !important;
+            }
+
+            table[class="map-back"] {
+                width: 100% !important;
+            }
+
+        }
+
+        @media only screen and (max-width: 480px) {
+            td[class="logo-320"] {
+                width: 100% !important;
+                text-align: center;
+                display: block !important;
+            }
+
+            td[class="logo-480"] {
+                width: 100% !important;
+                text-align: center;
+                display: block !important;
+                padding-bottom: 20px
+            }
+
+            table[class="navigation"] {
+                text-align: center !important;
+            }
+
+            img[class="img-logo"] {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            table[class="banner-size"] {
+                background-size: 100% 100% !important;
+            }
+
+            td[class="font-480"] {
+                font-size: 18px !important;
+            }
+
+            td[class="td-height"] {
+                height: 25px !important;
+            }
+
+            td[class="width-480"] {
+                width: 22px !important;
+            }
+        }
+
+        .btn-primary {
+            border-color: #f3911d !important;
+            background-color: #f7941e !important;
+            color: #fff !important;
+
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body style="width:100% !important; color:#77737b; font-family: 'Calibri', Arial, Helvetica, sans-serif; font-size:14px; line-height:1;" alink="#9d470a" link="#9d470a" bgcolor="#ccc9d0" text="#333333" yahoo="fix" align="center">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background: #ccc9d0;">
+    <tr>
+        <td width="20">
+            <img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/>
+        </td>
+        <td>
+            <table class="ExternalClass" width="640" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                            {# head section #}
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background: #ccc9d0;">
+                                        <tr>
+                                            <td height="17"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: center;color: #544c5f;font-size: 12px;">
+                                                Cet email ne s'affiche pas correctement ? <a href="javascript:;" style="color: #000;text-decoration: underline;">Afficher dans votre navigateur</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="17"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            {# /head section #}
+
+                            {# logo section #}
+                            <tr>
+                                <td>
+                                    <table class="banner-size" width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color: {{ mainColor }};">
+                                        <tr>
+                                            <td width="35"><img src=" {{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td height="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td class="logo-480" width="{{ logoWidth }}">
+                                                                        <a href="{{ app.request.schemeAndHttpHost }}" title="{{ getSettingByName('COMPANY_NAME') }}" target="_blank">
+                                                                            <img src="{{ app.request.schemeAndHttpHost }}/{{ asset('assets_global/img/logoMail.png') }}" alt="Logo" title="{{ getSettingByName('COMPANY_NAME') }}" width="{{ logoWidth }}" height="{{ logoHeight }}"/>
+                                                                        </a>
+                                                                    </td>
+                                                                    {#<td class="logo-320" width="50%;">
+                                                                        <table class="navigation" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: right;">
+                                                                            <tr>
+                                                                                <td><a href="#" style="color: #ffffff;text-transform: uppercase;font-size: 13px;text-decoration: none;">Portfolio</a></td>
+                                                                                <td width="5"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                                                                <td><a href="#" style="color: #ffffff;text-transform: uppercase;font-size: 13px;text-decoration: none;">Support</a></td>
+                                                                                <td width="5"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                                                                <td><a href="#" style="color: #ffffff;text-transform: uppercase;font-size: 13px;text-decoration: none;">Hire Us</a></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>#}
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="30"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td width="35"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            {# /logo section #}
+
+                            {# title section #}
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;background: #ffffff;">
+                                        <tr>
+                                            <td height="57"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-480" style="color: #1e1c20; font-size: 20px;letter-spacing: 2px;text-transform: uppercase;">{% block title %}{% endblock %}</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="15"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center"><img src="{{ asset('assets_global/mail/border.png') }}" width="56" height="1" alt="" title=""/></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="15"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #77737b;font-size: 20px;letter-spacing: 1px;">
+                                                {% block sub_title %}{% endblock %}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            {# /title section #}
+
+                            <tr>
+                                <td height="20" style="background: #ffffff;"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                            </tr>
+
+                            {# body section #}
+                            {% block body %}{% endblock %}
+                            {# /body section #}
+
+                            <tr>
+                                <td height="20" style="background: #ffffff;"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                            </tr>
+
+                            {# footer section #}
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background: #333;">
+                                        <tr>
+                                            <td height="32"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="10"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                                        <td width="38%"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                                        <td width="20%;" align="right">
+                                                            {#<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: right;">
+                                                                <tr>
+                                                                    {% if getSocialNetworks()|length > 0 %}
+                                                                        {% for socialNetwork in getSocialNetworks() %}
+                                                                            <td width="11"><a href="{{ socialNetwork.url ~ socialNetwork.parameter }}"><img src="{{ asset('assets_global/mail/fb.png') }}" alt="" title="" width="11" height="20"/></a></td>
+                                                                            <td width="5"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                                                        {% endfor %}
+                                                                    {% endif %}
+                                                                </tr>
+                                                            </table>#}
+                                                        </td>
+                                                        <td width="9"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td height="32"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            {#<tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center;">
+                                        <tr>
+                                            <td height="50"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #61546d;font-size: 12px;">To stop receiving these emails<a href="#" style="font-size: 12px;color: #625b90;text-decoration: underline;"> unsubscribe.</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="13"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #61546d;font-size: 12px;">Designed by ThemeMill</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="46"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>#}
+                            {# /footer section #}
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td width="20"><img src="{{ asset('assets_global/mail/spacer.gif') }}" alt="" title="" width="1" height="1"/></td>
+    </tr>
+</table>
+</body>
+</html>

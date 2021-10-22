@@ -1,0 +1,13 @@
+{% extends "FrontContactBundle:Mail:maillayout.html.twig" %}
+
+{% block smalltitle %}
+    {{ contact.nom }} - {{ contact.email }}
+{% endblock %}
+
+{% block bigtitle %}
+    {{ contact.sujet }}
+{% endblock %}
+    
+{% block mailcontent %}
+    {{ contact.message }}
+{% endblock %}
